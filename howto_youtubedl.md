@@ -2,6 +2,15 @@
 
 YouTube-DL is available for both CentOS/RHEL/Fedora and Ubuntu/Debian/ derivatives and it can be easily installed by using the following commands:
 
+install on fedora
+
+```
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install ffmpeg ffmpeg-devel
+```
+
+
 ```
 $ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 $ sudo chmod a+rx /usr/local/bin/youtube-dl
