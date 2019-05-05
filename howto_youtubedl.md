@@ -9,7 +9,7 @@ $ sudo chmod a+rx /usr/local/bin/youtube-dl
 
 Youtube-dl has quite an extensive "help" page and if you want to review it, simply type
 
-> # youtube-dl --help
+> youtube-dl --help
 
 If you are looking for a specific option, I recommend using the “grep” utility and search for specific word as shown.
 
@@ -21,3 +21,4 @@ Now to download a video as mp3 track, we need the following two options:
 --audio-format  – specifies the audio format in which the file will be downloaded. The supported audio formats are “best”, “aac”, “vorbis”, “mp3”, “m4a”, “opus”, or “wav”; “best” is set by default
 To download a video as mp3 file, you can use one of the following commands:
 
+> youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=jwD4AEVBL6Q
