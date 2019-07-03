@@ -204,5 +204,6 @@ Then follow below.
 
 6. Finally, in the terminal window, just click on + sign next to terminal list
 
+7. 
 ---
 
