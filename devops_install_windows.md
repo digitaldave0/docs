@@ -141,8 +141,8 @@ Write-Host $env:COMPUTERNAME
 
 ```command
 $ip = '192.168.2.248'
-$key = 'W269N-WFGWX-YVC9B-4J6C9-T83GX'
-slmgr.vbs /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+$key = '<?THEKEY>'
+slmgr.vbs /ipk $key
 slmgr.vbs /skms 192.168.5.248:1688
 slmgr.vbs /ato
 ```
@@ -175,7 +175,9 @@ choco install vagrant
 choco install packer
 ```
 
-### Adding changes to vscode
+### Adding changes to vscode config
+
+edit config.json file in vscode add below
 
 ```json
 // Command Prompt
@@ -187,3 +189,20 @@ choco install packer
 // Bash on Ubuntu (on Windows)
 "terminal.integrated.shell.windows": "C:\\Windows\\System32\\bash.exe"
 ```
+
+Then follow below.
+
+1. Open terminal, it should be visible (use ctrl+` or from menu View-> Integrated Terminal )
+
+2. Open commands search (use Ctrl+Shift+P or from menu View->Command Palette...)
+
+3. In command box Type "Terminal: Select Default Shell" to select this option from drop down box
+
+4. As you select this option, then all the available commands which are in path will be listed
+
+5. Just click any one which you like to add for quick access from command list.
+
+6. Finally, in the terminal window, just click on + sign next to terminal list
+
+---
+
