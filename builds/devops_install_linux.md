@@ -1,6 +1,6 @@
-#Linux Setup 
+# Linux Devtools Setup
 
-##Add Upgrade to fedora 31
+## Add Upgrade to fedora 31
 
 ````bash
 sudo dnf upgrade --refresh \

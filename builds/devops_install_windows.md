@@ -1,5 +1,5 @@
 ﻿
-# Prepare Windows 10 devtools
+# Windows 10 devtools setup
 
 ### Remove Most of the Unwanted Files
 
