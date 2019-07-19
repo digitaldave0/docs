@@ -10,13 +10,13 @@ sudo dnf system-upgrade reboot
 sudo dnf system-upgrade clean
 ````
 
-##Install fusion repo.
+## Install fusion repo.
 
 ````bash
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 ````
 
-###Install VS Code
+### Install VS Code
 
 ````bash 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -28,7 +28,7 @@ sudo dnf install code
 
 
 
-##Incremental backup projects  
+## Incremental backup projects folder  
 
 Create Local Backup job for Projects 
 
