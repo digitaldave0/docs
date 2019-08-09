@@ -25,6 +25,27 @@ dnf check-update
 sudo dnf install code
 ````
 
+## Install Python 3.7 
+
+````bash
+sudo dnf install python37
+````
+
+enable venv for python
+
+````bash
+python3.7 -m venv venv
+. venv/bin/activate
+(venv) $ python --version
+````
+
+
+create venv for python projects
+
+````code
+ python3 -m venv python-projects
+ source python_projects/bin/activate
+ ````
 
 
 
