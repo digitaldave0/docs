@@ -2,7 +2,8 @@
 
 YouTube-DL is available for both CentOS/RHEL/Fedora and Ubuntu/Debian/ derivatives and it can be easily installed by using the following commands:
 
-install on fedora
+install on fedora test
+
 
 ```
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
