@@ -79,3 +79,44 @@ for t in projects_2011-10-2*.tar.gz; \
     do tar --verbose --extract --incremental --gzip --file $t; done
 
 ````
+
+### <u>Install VPN</u> 
+
+````bash
+curl -sO https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
+sudo dnf install nordvpn-release-1.0.0-1.noarch.rpm
+sudo dnf update
+sudo dnf install nordvpn
+````
+
+Logon to VPN with Paswword
+
+````
+nordvpn login
+nordvpn connect
+````
+
+### <u>Settings</u>
+
+````
+nordvpn login - Log in.
+nordvpn connect or nordvpn c - Connect to VPN. To connect to specific servers, use nordvpn connect <country_code server_number> (eg. nordvpn connect uk715)
+nordvpn disconnect or nordvpn d - Disconnect from VPN.
+
+nordvpn set or nordvpn s - Set a configuration option. Possible options:
+nordvpn set cybersec on or off - Enable or disable CyberSec
+nordvpn set killswitch on or off - Enable or disable Kill Switch
+nordvpn set autoconnect on or off - Enable or disable Autoconnect. You can set a specific server for automatic connection using nordvpn set autoconnect on country_code+server_number. Example: nordvpn set autoconnect on us2435.
+nordvpn set protocol udp or tcp - Switch between UDP and TCP protocols
+nordvpn set obfuscate on or off - Enable or disable Obfuscated Servers.
+
+nordvpn whitelist add port 22 - Open incoming port 22 (the port number can be different)
+nordvpn whitelist remove port 22 - Remove the rule added with the above command
+nordvpn settings - See the current settings.
+nordvpn status - See the connection status.
+nordvpn countries - See the country list.
+nordvpn cities - See the city list.
+nordvpn groups - See a list of available server groups.
+nordvpn logout - Log out.
+nordvpn help or nordvpn h - See the list of commands or help for one command.
+````
