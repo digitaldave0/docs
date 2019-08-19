@@ -83,7 +83,8 @@ for t in projects_2011-10-2*.tar.gz; \
 ### <u>Install VPN</u> 
 
 ````bash
-curl -sO https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
+sudo wget -qnc https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
+#curl -sO https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
 sudo dnf install nordvpn-release-1.0.0-1.noarch.rpm
 sudo dnf update
 sudo dnf install nordvpn
@@ -119,4 +120,24 @@ nordvpn cities - See the city list.
 nordvpn groups - See a list of available server groups.
 nordvpn logout - Log out.
 nordvpn help or nordvpn h - See the list of commands or help for one command.
+````
+
+see [Public API For VPN Lists]("https://blog.sleeplessbeastie.eu/2019/02/18/how-to-use-public-nordvpn-api/")
+
+## install wire guard
+
+````root
+sudo dnf copr enable jdoss/wireguard
+sudo dnf install wireguard-dkms wireguard-tools
+nordvpn set technology nordlynx
+
+nordvpn c
+````
+
+## Kodi 
+
+````
+sudo dnf install -y  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 ````
