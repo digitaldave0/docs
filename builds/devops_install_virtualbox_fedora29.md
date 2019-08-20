@@ -47,3 +47,4 @@ sudo usermod -a -G vboxusers ($user)
 At this point, you are ready to start using VirtualBox on your Fedora 29. Search for VirtualBox in the Activities search feature and click on it to launch it.
 
 Alternatively, execute the following command to start VirtualBox from the terminal.
+
