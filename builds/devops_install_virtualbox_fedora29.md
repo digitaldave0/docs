@@ -48,3 +48,8 @@ At this point, you are ready to start using VirtualBox on your Fedora 29. Search
 
 Alternatively, execute the following command to start VirtualBox from the terminal.
 
++ removing older versions of kernel
+
+````bash
+sudo dnf remove $(dnf repoquery --installonly --latest-limit=-2 -q)
+````
