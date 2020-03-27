@@ -47,6 +47,7 @@ Kubernete ships with a web dashboard which allows you to manage your cluster wit
 
 ```console
 minikube addons list
+minikube addons enable dashboard
 minikube dashboard
 minikube dashboard --url
 ```
