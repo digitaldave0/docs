@@ -18,9 +18,9 @@ sudo su -
 #KVM
 curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu18.04 -o /usr/local/bin/docker-machine-driver-kvm$ chmod +x /usr/local/bin/docker-machine-driver-kvm
 
-curl -L https://developers.redhat.com/products/cdk/download/
-cp cdk-3.6.0–1-minishift-linux-amd64 /usr/local/bin
-ln -sf cdk-3.6.0–1-minishift-linux-amd64 minishift
+curl -L https://developers.redhat.com/download-manager/file/cdk-3.12.0-1-minishift-linux-amd64
+cp cdk-3.12.0-1-minishift-linux-amd64 /usr/local/bin
+ln -sf cdk-3.12.0-1-minishift-linux-amd64 minishift
 minishift setup-cdk
 #VirtualBox
 minishift start --vm-driver=virtualbox.

@@ -1,0 +1,62 @@
+## Install Ubuntu Server
+
+> Change ip to fixed set hostname
+
+```shell
+# edit netplan
+sudo vim /etc/netplan/01-netcfg.yaml 
+# change file to below
+sudo su -
+echo -e "# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.5.201/24]
+      gateway4:  192.168.5.1
+      nameservers:
+              addresses: [192.168.5.1, 8.8.8.8, 8.8.4.4]" > /etc/netplan/01-netcfg.yaml
+    # apply config with debug
+    sudo netplan --debug try
+    sudo hostnamectl hostnamectl ubuntu-server
+    sudo apt install ansible
+```
+
+```shell
+sudo echo -e "192.168.5.201" > ~/ansible_hosts
+export ANSIBLE_INVENTORY=~/ansible_hosts
+```
+
+```shell
+#ping all hosts
+ansible all -m ping
+#Ask for SSH Password
+ansible all -m ping --ask-pass -c paramiko
+#check inventory
+ansible-inventory --graph
+```
+    
+> Add more disk space new disk, extended root vg to 100% ubuntu
+
+```shell
+sudo su -
+#scan for new disk
+lvmdiskscan
+#create new pv
+pvcreate /dev/sdb 
+#scan again
+lvmdiskscan -l
+#extend new pv to existing lv
+vgextend ubuntu-vg /dev/sdb
+#extend lv root to 100%
+lvm lvextend -l +100%FREE  /dev/ubuntu-vg/ubuntu-lv
+#resize filesystem in root lv
+resize2fs -p /dev/mapper/ubuntu-vg/ubuntu-lv
+#check 
+df -h 
+```
+

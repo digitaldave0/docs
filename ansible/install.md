@@ -39,7 +39,7 @@ sudo pip install ansible
 >Add current host to ansible hosts file
 
 ```shell
-echo -e "192.168.5.172 192.168.5.201" > ~/ansible_hosts
+echo -e "192.168.5.201" > ~/ansible_hosts
 export ANSIBLE_INVENTORY=~/ansible_hosts
 ```
 
