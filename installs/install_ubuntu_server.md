@@ -63,3 +63,24 @@ resize2fs -p /dev/mapper/ubuntu-vg/ubuntu-lv
 df -h 
 ```
 
+> Backup project files
+
+```shell
+$ tar --create --verbose --listed-incremental ./projects.snar --gzip  --exclude-from=projects/backup_exclude.txt \
+    --file projects_`date +%F`.tar.gz projects/
+```
+
+> Restore Project Files
+
+When you want to restore, put all archive files into a folder and extract each in order of their creation using the --incremental option, something like this:
+
+```shell
+for t in projects_2011-10-2*.tar.gz; \
+    do tar --verbose --extract --incremental --gzip --file $t; done
+```
+> adding vm addtions
+
+```shell
+sudo apt install linux-headers-$(uname -r) build-essential dkms
+sudo /media/$USER/VBox_GAs*/VBoxLinuxAdditions.run
+```
