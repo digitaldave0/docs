@@ -84,3 +84,25 @@ for t in projects_2011-10-2*.tar.gz; \
 sudo apt install linux-headers-$(uname -r) build-essential dkms
 sudo /media/$USER/VBox_GAs*/VBoxLinuxAdditions.run
 ```
+> adding docker server
+
+```shell
+# add common 
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+# add docker repo
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+# check correct vesion of docker pulled from above
+apt-cache policy docker-ce
+# install docker
+sudo apt install docker-ce
+sudo systemctl status docker
+# add account to group
+sudo usermod -aG docker ${USER}
+# logout sesion check
+id -nG
+# check running pull test image
+docker info
+docker run hello-world
+```
