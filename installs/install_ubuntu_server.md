@@ -23,12 +23,15 @@ network:
     # apply config with debug
     sudo netplan --debug try
     sudo hostnamectl hostnamectl ubuntu-server
+    sudo usermod -aG sudo dave
     sudo apt install ansible
 ```
 
+#set up ansible inventory to use file
 ```shell
 sudo echo -e "192.168.5.201" > ~/ansible_hosts
 export ANSIBLE_INVENTORY=~/ansible_hosts
+sudo echo -e 'export ANSIBLE_INVENTORY=/home/dave/ansible_hosts' >> /etc/environment
 ```
 
 ```shell

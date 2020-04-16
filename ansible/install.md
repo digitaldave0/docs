@@ -39,13 +39,13 @@ sudo pip install ansible
 >Add current host to ansible hosts file
 
 ```shell
+sudo su -
 echo -e "192.168.5.201" > ~/ansible_hosts
 export ANSIBLE_INVENTORY=~/ansible_hosts
+echo -e 'export ANSIBLE_INVENTORY=/home/dave/ansible_hosts' >> /etc/environment
 ```
 
 ```shell
-#ping all hosts
-ansible all -m ping
 #Ask for SSH Password
 ansible all -m ping --ask-pass -c paramiko
 #check inventory
