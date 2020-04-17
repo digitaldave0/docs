@@ -106,3 +106,6 @@ id -nG
 docker info
 docker run hello-world
 ```
+```shell
+sudo apt install neofetch
+``
