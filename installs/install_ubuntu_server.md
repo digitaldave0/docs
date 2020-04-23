@@ -22,7 +22,7 @@ network:
               addresses: [192.168.5.1, 8.8.8.8, 8.8.4.4]" > /etc/netplan/01-netcfg.yaml
     # apply config with debug
     sudo netplan --debug try
-    sudo hostnamectl hostnamectl ubuntu-server
+    sudo hostnamectl set-hostname  ubuntu-server
     sudo usermod -aG sudo dave
     sudo apt install ansible
 ```
@@ -107,5 +107,11 @@ docker info
 docker run hello-world
 ```
 ```shell
+#neofetech
 sudo apt install neofetch
-``
+# install vscode
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt update
+sudo apt install code
+```
