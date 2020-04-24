@@ -1,7 +1,21 @@
 
 Basic AWS Client Notes
 
+## export keys.
+
+```shell
+# pass vaule for access_id and secret id
+read -s AWS_ACCESS_KEY_ID
+read -s  AWS_SECRET_ACCESS_KEY
+export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+echo $AWS_SECRET_ACCESS_KEY
+echo $AWS_ACCESS_KEY_ID
+```
+
 ## Create and Manage EC2 Instances
+
+
 
 ### Create KeyPair
 
