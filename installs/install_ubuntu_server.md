@@ -115,17 +115,3 @@ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/v
 sudo apt update
 sudo apt install code
 ```
-## install virtualenv python3 ubuntu
-
-```shell
-sudo apt-get install python3-pip
-sudo pip3 install virtualenv 
-virtualenv venv 
-virtualenv -p /usr/bin/python3.7 venv
-source venv/bin/activate
-#deativate 
-deactivate
-# also can use this with -p
-virtualenv -p python3 myenv
-python3 -m venv myenv
-```
