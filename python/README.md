@@ -25,5 +25,5 @@ python3 -m venv myenv
 # freeze list of packages
 pip3 freeze > requirements.txt
 # use file to build packages
- pip install -r requirements.txt
- ```
+pip install -r requirements.txt
+```
