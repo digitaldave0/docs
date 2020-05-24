@@ -34,11 +34,9 @@ To download a video as mp3 file, you can use one of the following commands:
 > youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=jwD4AEVBL6Q
 
 
-encode mp3 files in batch to Audio: mp3, 48000 Hz, stereo, fltp, 192 kb/s
-
+encode mp3 files in batch to Audio: mp3, 48000 Hz, stereo, fltp,
 ```bash
 for i in *.mp3; do ffmpeg -i "$i" -c:a libmp3lame -b:a 192k  tmp.mp3 && mv tmp.mp3 "$(basename "$i"-192 .mp3)".mp3  ; done
-get rid of spaces
-rename "s/ *//g" *.mp3
+for i in %.mp3; do rename  's/ //g; s/-[^-]*\././' *.mp3 ; done
 
 ```
