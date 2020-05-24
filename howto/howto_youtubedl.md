@@ -38,4 +38,7 @@ encode mp3 files in batch to Audio: mp3, 48000 Hz, stereo, fltp, 192 kb/s
 
 ```bash
 for i in *.mp3; do ffmpeg -i "$i" -c:a libmp3lame -b:a 192k  tmp.mp3 && mv tmp.mp3 "$(basename "$i"-192 .mp3)".mp3  ; done
+get rid of spaces
+rename "s/ *//g" *.mp3
+
 ```
