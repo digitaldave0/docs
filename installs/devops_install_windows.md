@@ -179,6 +179,22 @@ choco install postman -y
 choco install sysintern -y
 ```
 
+
+### Checking for error codes with choco and powershell example
+```powershell
+$exitCode = $LASTEXITCODE
+
+Write-Verbose "Exit code was $exitCode"
+$validExitCode
+
+s = @(0, 1605, 1614, 1641, 3010)
+if ($validExitCodes -contains $exitCode) {
+Exit 0
+}
+
+Exit $exitCode
+```
+
 ### Adding changes to vscode config
 
 edit config.json file in vscode add below
@@ -204,10 +220,15 @@ Then follow below.
 
 4. As you select this option, then all the available commands which are in path will be listed
 
-5. Just click any one which you like to add for quick access from command list.
+5. Just click any one which you like to add or quick access from command list.
 
 6. Finally, in the terminal window, just click on + sign next to terminal list
 
 7. 
+
+### upgrade choco
+```command
+choco upgrade wsl -y --source="'http://internal/odata/repo'
+```
 ---
 
