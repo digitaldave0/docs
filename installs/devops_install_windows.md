@@ -168,11 +168,15 @@ choco feature enable -y allowGlobalConfirmation
 choco install wsl-fedoraremix
 choco install vscode
 choco install git.install
-choco install python --version 3.7.2
-choco install consul
-choco install vault
-choco install vagrant
-choco install packer
+choco install python --version 3.7.2 -y
+choco install consul -y
+choco install vault -y
+choco install vagrant -y
+choco install packer -y
+choco install sysinternals -y
+choco install fiddler -y
+choco install postman -y
+choco install sysintern in -y
 ```
 
 ### Adding changes to vscode config
