@@ -176,7 +176,7 @@ choco install packer -y
 choco install sysinternals -y
 choco install fiddler -y
 choco install postman -y
-choco install sysintern in -y
+choco install sysintern -y
 ```
 
 ### Adding changes to vscode config
