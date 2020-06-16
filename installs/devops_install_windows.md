@@ -178,7 +178,7 @@ choco install postman -y
 choco install sysintern -y
 ```
 
-### Fix sharing exiting git key after WSL is working 
+### Fix sharing ssh key after WSL is working 
 
 ```bash
 git config --global user.name  ""
