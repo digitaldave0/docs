@@ -165,18 +165,34 @@ choco feature enable -y allowGlobalConfirmation
 ### install fedora wsl, vscode, python 3.7, git,  
 
 ```command
-choco install wsl-fedoraremix
-choco install vscode
+choco install wsl -y
+choco install wsl-ubuntu -y
+choco install vscode -y
 choco install git.install
 choco install python --version 3.7.2 -y
-choco install consul -y
-choco install vault -y
 choco install vagrant -y
 choco install packer -y
 choco install sysinternals -y
 choco install fiddler -y
 choco install postman -y
 choco install sysintern -y
+```
+
+### Fix sharing ssh key after WSL is working 
+
+```bash
+git config --global user.name  ""
+git config --global user.email ""
+git config --global core.autocrlf false
+git config --global --edit
+cd ~
+mkdir .ssh
+chmod 700 .ssh
+cd .ssh
+cp /mnt/c/Users/user/.ssh/id_rsa* .
+chmod 600 id_rsa
+chmod 644 id_rsa.pub
+git config --list --show-origin
 ```
 
 
