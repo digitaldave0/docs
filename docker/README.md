@@ -66,6 +66,8 @@ oc new-build --strategy docker --binary --docker-image centos:centos7 --name mya
 
 ```console
 oc start-build myapp --from-dir . --follow
+oc describe build myapp
+oc logs -f bc/myapp
 ```
 
 ### Deploy the application using new-app, then create a route for it:
@@ -74,9 +76,17 @@ oc start-build myapp --from-dir . --follow
 oc new-app myapp
 oc expose svc/myapp
 ```
+or can use oc new-app 
 
 ### Get the host name for your route and navigate to it:
 
 ```console
 oc get route myapp
+```
+## get build config
+```console 
+oc logs -f bc/myapp
+oc describe build myapp
+oc status
+oc edit bc/myapp
 ```
