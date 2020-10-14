@@ -37,7 +37,7 @@ curl -u $USERNAME:$PASSWORD -X "DELETE" https://cloud.docker.com/v2/repositories
 docker rmi -f $(docker images -a -q)
 ```
 
-## openshift 
+# openshift 
 
 Using minishift
 
@@ -45,27 +45,38 @@ minishift start --vm-driver=virtualbox
 
 ----
 
-Building local code changes
+## Building local code changes
 
 ```console
 oc login --get token
 oc get projects.
-oc project <name>
+# create new project 
+oc new-project test2 --description="test2" --display-name="test Project"
+oc project test2
+```
 
-#create a new build for application
 
+### create a new build for application
+
+```console
 oc new-build --strategy docker --binary --docker-image centos:centos7 --name myapp
+```
 
-#Start a binary build using the local directory’s content
+### Start a binary build using the local directory’s content
 
+```console
 oc start-build myapp --from-dir . --follow
+```
 
-#Deploy the application using new-app, then create a route for it:
+### Deploy the application using new-app, then create a route for it:
 
+```console
 oc new-app myapp
 oc expose svc/myapp
+```
 
-#Get the host name for your route and navigate to it:
+### Get the host name for your route and navigate to it:
 
+```console
 oc get route myapp
 ```
