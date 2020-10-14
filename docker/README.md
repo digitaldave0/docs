@@ -41,7 +41,10 @@ docker rmi -f $(docker images -a -q)
 
 Using minishift
 
+```
 minishift start --vm-driver=virtualbox
+minishift stop
+```
 
 ----
 
