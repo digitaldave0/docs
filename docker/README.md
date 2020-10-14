@@ -83,7 +83,7 @@ or can use oc new-app
 ```console
 oc get route myapp
 ```
-## get build config
+### get build config details
 ```console 
 oc logs -f bc/myapp
 oc describe build myapp
