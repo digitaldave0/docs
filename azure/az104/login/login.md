@@ -33,3 +33,9 @@ pwsh
 az account list --output=table
 az account list-locations --output=table | egrep 'United'
 ```
+
+java -jar agent.jar -jnlpUrl http://192.168.5.116:8080/computer/test-agent/jenkins-agent.jnlp -secret @secret-file -workDir "~/dave/jenkins-slave"
+
+docker run --init jenkins/inbound-agent -url http://jenkins-server:port -workDir=/home/jenkins/agent <secret> <agent name>
+
+d
