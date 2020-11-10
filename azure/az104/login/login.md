@@ -34,8 +34,31 @@ az account list --output=table
 az account list-locations --output=table | egrep 'United'
 ```
 
-java -jar agent.jar -jnlpUrl http://192.168.5.116:8080/computer/test-agent/jenkins-agent.jnlp -secret @secret-file -workDir "~/dave/jenkins-slave"
+# using 
 
-docker run --init jenkins/inbound-agent -url http://jenkins-server:port -workDir=/home/jenkins/agent <secret> <agent name>
-
-d
+```
+#login
+az login
+#get account list
+az account list --output table
+#set subscription
+az account set --su <Azure-SubscriptionId>
+#create Service Principal (SPN) account
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTION_ID"
+az group create -l ukwest -n dah-Packer-RG
+```
+```
+# create service principal
+TENTANT_ID = <tentant_id>
+SUBSCRIPTION_ID = <subscription_id>
+az account set --subscription $SUBSCRIPTION_ID 
+SERVICE_PRINCIPAL_JSON=$(az ad sp create-for-rbac --skip-assignment --name terrafrom-sp -o json)
+echo $SERVICE_PRINCIPAL_JSON
+SERVICE_PRINCIPAL=$(echo $SERVICE_PRINCIPAL_JSON | jq -r '.appid')
+SERVICE_PRINCIPAL_SECRET=$(echo SERVICE_PRINCIPAL_JSON | jq -r '.password')
+echo $SERVICE_PRINCIPAL
+echo $SERVICE_PRINCIPAL_SECRET
+az role assignment create --assignee $SERVICE_PRINCIPAL \
+--scope "/subscriptions/$SUBSCRIPTION_ID \
+--role Contributor
+```
