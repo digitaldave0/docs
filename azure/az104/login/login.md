@@ -47,8 +47,11 @@ az account set --su <Azure-SubscriptionId>
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTION_ID"
 az group create -l ukwest -n dah-Packer-RG
 ```
+
+## create SPN and assign 
 ```
 # create service principal
+az login 
 TENTANT_ID = <tentant_id>
 SUBSCRIPTION_ID = <subscription_id>
 az account set --subscription $SUBSCRIPTION_ID 
@@ -62,3 +65,4 @@ az role assignment create --assignee $SERVICE_PRINCIPAL \
 --scope "/subscriptions/$SUBSCRIPTION_ID \
 --role Contributor
 ```
+
