@@ -1,12 +1,31 @@
 ## Login
 
-### Install install Azure CLI Tools
+
+# install powershell windows
+```
+$PSVersionTable
+Set-ExecutionPolicy Unrestricted
+Install-Module -Name PowerShellGet -Force
+Get-Module -ListAvailable
+if ($PSVersionTable.PSEdition -eq 'Desktop' -and (Get-Module -Name AzureRM -ListAvailable)) { `
+>>     Write-Warning -Message ('Az module not installed. Having both the AzureRM and ' + `
+>>       'Az modules installed at the same time is not supported.') `
+>> } else { `
+>>     Install-Module -Name Az -AllowClobber -Scope AllUsers `
+>> }
+Connect-AzAccount
+Get-AzSubscription
+$context = <subscription_id>
+Set-AzContext= $context
+```
+
+### Install install Azure CLI Tools linux
 
 ```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 
-### Install Powershell 
+### Install Powershell on linux
 
 ```bash
 # Update the list of packages
@@ -26,7 +45,7 @@ pwsh
 ```
 
 
-# commands
+# az commands
 
 ```bash
 # list account subscription
@@ -34,7 +53,7 @@ az account list --output=table
 az account list-locations --output=table | egrep 'United'
 ```
 
-# using 
+# using SPN with az cli  
 
 ```
 #login
@@ -57,12 +76,11 @@ SUBSCRIPTION_ID = <subscription_id>
 az account set --subscription $SUBSCRIPTION_ID 
 SERVICE_PRINCIPAL_JSON=$(az ad sp create-for-rbac --skip-assignment --name terrafrom-sp -o json)
 echo $SERVICE_PRINCIPAL_JSON
-SERVICE_PRINCIPAL=$(echo $SERVICE_PRINCIPAL_JSON | jq -r '.appid')
+SERVICE_PRINCIPAL=$(echo $SERVICE_PRINCIPAL_JSON | jq -r '.appId')
 SERVICE_PRINCIPAL_SECRET=$(echo SERVICE_PRINCIPAL_JSON | jq -r '.password')
 echo $SERVICE_PRINCIPAL
 echo $SERVICE_PRINCIPAL_SECRET
 az role assignment create --assignee $SERVICE_PRINCIPAL \
---scope "/subscriptions/$SUBSCRIPTION_ID \
+--scope "/subscriptions/"$SUBSCRIPTION_ID \
 --role Contributor
 ```
-
