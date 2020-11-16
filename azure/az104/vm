@@ -1,0 +1,28 @@
+## Create VM
+
+```
+$rg = "dahpwshrg"
+New-AzResourceGroup -Name $rg -Location ukwest 
+$cred = Get-Credential 
+$VName = "dah-test"
+$Location = "ukwest"
+$VirtualNetworkName = "dah"
+New-AzVm `
+    -ResourceGroupName "dahpwshrg" `
+    -Name $VName `
+    -Location $Location `
+    -VirtualNetworkName "$VirtualNetworkName-Vnet'" `
+    -SubnetName "dahsubnet" `
+    -SecurityGroupName "dahNetworkSecurityGroup" `
+    -PublicIpAddressName "dahPublicIpAddress" `
+    -OpenPorts 80,3389 `
+    -Credential $cred
+
+$pubip = Get-AzPublicIpAddress -ResourceGroupName $rg | Select "IpAddress"
+
+mstsc /v<pubip>
+```
+
+G
+et-AzVMImageOffer -location $Location -PublisherName "MicrosoftWindowsServer"
+Get-AzVMImageSku -Location $Location -PublisherName "MicrosoftWindowsServer" -Offer "WindowsServer"
