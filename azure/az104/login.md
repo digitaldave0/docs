@@ -1,8 +1,21 @@
-## Login
+## set profile enable history 
+
+```powershell
+if (!(Test-Path -Path $Profile)) {`
+New-Item -ItemType File -Path $Profile -Force`
+}
+echo $Profile
+add-content $env:$Profile `
+'env:Path += ;env:"'
+
+function full_history {
+    cat (Get-PSReadlineOption).HistorySavePath
+}
+```
 
 
 # install powershell windows
-```
+```powershell
 $PSVersionTable
 Set-ExecutionPolicy Unrestricted
 Install-Module -Name PowerShellGet -Force
