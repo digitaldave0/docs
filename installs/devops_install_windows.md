@@ -4,136 +4,17 @@
 ### Remove Most of the Unwanted Files
 
 ```powershell
-write-host "uninstall 3D Builder:"
-get-appxpackage *3dbuilder* | remove-appxpackage
-
-write-host "uninstall Alarms & Clock:"
-get-appxpackage *alarms* | remove-appxpackage
-
-write-host "uninstall App Connector:"
-get-appxpackage *appconnect* | remove-appxpackage
-
-write-host "uninstall App Installer:"
-get-appxpackage *appinstaller* | remove-appxpackage
-
-write-host "uninstall Calendar and Mail apps write-hostgether:"
-get-appxpackage *communicationsapps* | remove-appxpackage
-
-write-host "uninstall Calculator:"
-get-appxpackage *calculator* | remove-appxpackage
-
-write-host "uninstall Camera:"
-get-appxpackage *camera* | remove-appxpackage
-
-write-host "uninstall Feedback Hub:"
-get-appxpackage *feedback* | remove-appxpackage
-
-write-host "uninstall Get Office:"
-get-appxpackage *officehub* | remove-appxpackage
-
-write-host "uninstall Get Started or Tips:"
-get-appxpackage *getstarted* | remove-appxpackage
-
-write-host "uninstall Get Skype:"
-get-appxpackage *skypeapp* | remove-appxpackage
-
-write-host "uninstall Groove Music:"
-get-appxpackage *zunemusic* | remove-appxpackage
-
-write-host "uninstall Groove Music and Movies TV"
-get-appxpackage *zune* | remove-appxpackage
-
-write-host "uninstall Maps:"
-get-appxpackage *maps* | remove-appxpackage
-
-write-host "uninstall Messaging and Skype Video apps"
-get-appxpackage *messaging* | remove-appxpackage
-
-write-host "uninstall Microsoft Solitaire Collection:"
-get-appxpackage *solitaire* | remove-appxpackage
-
-write-host "uninstall Microsoft Wallet:"
-get-appxpackage *wallet* | remove-appxpackage
-
-write-host "uninstall Microsoft Wi-Fi"
-get-appxpackage *connectivity* | remove-appxpackage
-
-write-host "uninstall Money:"
-get-appxpackage *bingfinance* | remove-appxpackage
-
-write-host "uninstall Money, News, Sports and Weather"
-get-appxpackage *bing* | remove-appxpackage
-
-write-host "uninstall Movies & TV:"
-get-appxpackage *zunevideo* | remove-appxpackage
-
-write-host "uninstall News:"
-get-appxpackage *bingnews* | remove-appxpackage
-
-write-host "uninstall OneNote:"
-get-appxpackage *onenote* | remove-appxpackage
-
-write-host "uninstall Paid Wi-Fi & Cellular:"
-get-appxpackage *oneconnect* | remove-appxpackage
-
-write-host "uninstall Paint 3D:"
-get-appxpackage *mspaint* | remove-appxpackage
-
-write-host uninstall Phone:
-get-appxpackage *commsphone* | remove-appxpackage
-
-write-host uninstall Phone Companion:
-get-appxpackage *windowsphone* | remove-appxpackage
-
-write-host uninstall Phone and Phone Companion apps write-hostgether:
-get-appxpackage *phone* | remove-appxpackage
-
-write-host "uninstall Phone"
-get-appxpackage *phone* | remove-appxpackage
-
-write-host "uninstall Sports:"
-get-appxpackage *bingsports* | remove-appxpackage
-
-write-host "uninstall Sticky Notes:"
-get-appxpackage *sticky* | remove-appxpackage
-
-write-host "uninstall Sway:"
-get-appxpackage *sway* | remove-appxpackage
-
-write-host "uninstall View 3D:"
-get-appxpackage *3d* | remove-appxpackage
-
-write-host "uninstall Voice Recorder:"
-get-appxpackage *soundrecorder* | remove-appxpackage
-
-write-host "uninstall Weather:"
-get-appxpackage *bingweather* | remove-appxpackage
-
-write-host "uninstall Windows Holographic:"
-get-appxpackage *holographic* | remove-appxpackage
-
-write-host "uninstall Xbox:"
-get-appxpackage *xbox* | remove-appxpackage
-```
-
-### List all Packages
-
-```powershell
-Get-AppxPackage | Select Name, PackageFullName
-```
-
-### remove indvidual apps
-
-```powershell
-$a="Microsoft.Windows.Photos_2018.18051.21218.0_x64__8wekyb3d8bbwe"
-Get-AppPackage $a | Remove-AppxPackage
+list out packages to be removed
+$a = Get-AppxPackage -AllUsers | where-object {$_.IsFramework -eq $false -And $_.name -notlike "*store*" -And $_.name -notlike "*calc*" -And $_.SignatureKind -eq "Store"} | select Name
+Get-AppxPackage -AllUsers | where-object {$_.IsFramework -eq $false -And $_.name -notlike "*store*" -And $_.name -notlike "*calc*" -And $_.SignatureKind -eq "Store"} | Remove-AppxPackage -whatif
 ```
 
 ### Restart & Rename Computer
 
 ```powershell
+$myname "lappy02" 
 Restart-Computer 
-Rename-Computer -ComputerName $env:COMPUTERNAME -NewName "lappy02"
+Rename-Computer -ComputerName $env:COMPUTERNAME -NewName $myname
 Write-Host $env:COMPUTERNAME
 ```
 
@@ -162,19 +43,25 @@ choco feature enable -y allowGlobalConfirmation
 
 ## Install Choco Packages  
 
-### install fedora wsl, vscode, python 3.7, git,  
+```powershell
+$devpackages = @("virtualbox","packer","vagrant","notepadplusplus","terraform","terraform-docs","git.install") `
+$devpackages | % {choco install $_ -y} `
+refreshenv
+```
 
-```command
+
+```
+#useful choco packages list
 choco install wsl -y
 choco install wsl-ubuntu -y
 choco install vscode -y
+choco install notepadplusplus -y
 choco install git.install
 choco install python --version 3.7.2 -y
+choco install virtualbox -y
 choco install vagrant -y
 choco install packer -y
 choco install sysinternals -y
-choco install fiddler -y
-choco install postman -y
 choco install sysintern -y
 ```
 
