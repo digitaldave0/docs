@@ -82,9 +82,13 @@ for t in projects_2011-10-2*.tar.gz; \
 
 ## copy ssh key
 
-````
+````bash
 cat ~/.ssh/id_rsa.pub | ssh <user>@<hostname> 'umask 0077; mkdir -p .ssh; cat >> .ssh/authorized_keys && echo "Key copied"'
 
 ````
+### cut history
 
-
+```bash
+history 25 > file.log
+cat file.log | cut -c 8-
+```
