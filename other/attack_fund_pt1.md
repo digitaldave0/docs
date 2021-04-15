@@ -4,7 +4,7 @@
 - Riccardo Ancarni 
 
 - Improve understanding of attacks. so we can detect and prevent them
-- Jarral Atckinson Blogs on extraction
+- Jared AtkinsonBlogs https://posts.specterops.io/capability-abstraction-fbeaeeb26384
 
 - Analyse set of known ttps used by real threat actors
 - Emulate them in a controlled lab enviroment 
@@ -94,6 +94,9 @@ https://www.cobaltstrike.com/downloads/csmanual43.pdf
 
 https://www.darkoperator.com/installing-metasploit-in-ubuntu
 
+https://computingforgeeks.com/how-to-install-metasploit-framework-on-ubuntu-18-04-debian-9/
+
+
 ```
 curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
   chmod 755 msfinstall && \
@@ -122,11 +125,15 @@ exploit
 - sigma rule, sigma converters. splunk, 
 - babies of pain detect TTP
 - eventid 4768, eventid 3, eventid 1
+- eventid 59, bitsadmin 
 - os query tool
 - LOLBin
 - shellcode, doesn't need external depenaces,
 - excel 4.0 code.
 - volatility tool
+- rubeus tool for kerberoasting 
+- asrep roast
+- sharpshares
 
 
 ### Invoke-Obfuscation
@@ -159,3 +166,67 @@ https://github.com/decalage2/oletools
 
 ### Code Execution and Persistance 
 
+- Anartz Martin
+
+Code execution consists of techniques that result in adviseray controlled code running on a local or remote system
+
+- Astaroth 
+
+- Use of LoLBins 
+    - Using BITSAdmin and Extexport utilities
+- Alternate Data Streams
+
+```
+#downloading 
+bitsadmin /transfer 1 bitsadmin /addfile 1
+https://live.sysinternals.com/autoruns.exe c:\data\playfolder\autoruns.exe
+bitsadmin /RESUME 1 bitsadmin /complete 1
+```
+
+```
+#copy
+bitsadmin /create 1 & bitsadmin /addfile 1 c:\windows\system32\autoruns.exe
+c:\data\playfolder\cmd.exe & bitsadmin /SetNotifyCmdLine 1 
+c:\data\playfolder\cmd.exe NULL % bitsadmin /RESUME 1 & bitsadmin /Reset
+```
+
+
+### Discovery and lateral movement
+
+SilkETW & SilkService are flexible C# wrappers for ETW, they are meant to abstract away the complexities of ETW and give people a simple interface to perform research and introspection. While both projects have obvious defensive (and offensive) applications they should primarily be considered as research tools.
+
+- silketw
+
+https://github.com/fireeye/SilkETW
+
+
+### sigma (Generic Signature Format for SIEM Systems)
+
+Sigma is a generic and open signature format that allows you to describe relevant log events in a straightforward manner. The rule format is very flexible, easy to write and applicable to any type of log file. The main purpose of this project is to provide a structured form in which researchers or analysts can describe their once developed detection methods and make them shareable with others.
+
+- splunk
+- ELK 
+- logpoint.
+
+https://github.com/SigmaHQ/sigma
+
+
+- Logs Windows 
+  - security, system application 
+  - sysmon
+  - powershell
+  - autoruns item
+  - applocker
+  - Object,auditing -Files Registry
+
+
+
+
+
+
+
+
+
+### Cloud
+
+- cloud detection stack.
