@@ -133,5 +133,14 @@ Then follow below.
 ```command
 choco upgrade wsl -y --source="'http://internal/odata/repo'
 ```
+
+### dism convert install.esd to install.wim 
+```
+#list index
+dism /Get-WimInfo /WimFile:"C:\new folders\sources\install.esd"
+# convert encypted esd to wim format to use 
+C:\Windows\system32> dism /Export-Image /SourceImageFile:"C:\new folders\sources\install.esd" /SourceIndex:6 /DestinationImageFile:"C:\new folders\sources\install.wim" /Compress:Max /CheckIntegrity
+```
+
 ---
 
