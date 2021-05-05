@@ -144,3 +144,8 @@ C:\Windows\system32> dism /Export-Image /SourceImageFile:"C:\new folders\sources
 
 ---
 
+## create bootable iso 
+
+```
+C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools>oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,b"C:\new folders\boot\etfsboot.com"#pEF,e,b"C:\new folders\efi\microsoft\boot\efisys.bin" "C:\new folders" "C:\other\updated_w10.iso"
+```
