@@ -133,5 +133,19 @@ Then follow below.
 ```command
 choco upgrade wsl -y --source="'http://internal/odata/repo'
 ```
+
+### dism convert install.esd to install.wim 
+```
+#list index
+dism /Get-WimInfo /WimFile:"C:\new folders\sources\install.esd"
+# convert encypted esd to wim format to use 
+C:\Windows\system32> dism /Export-Image /SourceImageFile:"C:\new folders\sources\install.esd" /SourceIndex:6 /DestinationImageFile:"C:\new folders\sources\install.wim" /Compress:Max /CheckIntegrity
+```
+
 ---
 
+## create bootable iso 
+
+```
+C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools>oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,b"C:\new folders\boot\etfsboot.com"#pEF,e,b"C:\new folders\efi\microsoft\boot\efisys.bin" "C:\new folders" "C:\other\updated_w10.iso"
+```
