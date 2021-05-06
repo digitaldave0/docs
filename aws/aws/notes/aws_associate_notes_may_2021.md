@@ -982,4 +982,16 @@ Can do SSL Pass through
 - Lambda functions use a runtime ( e.g Python 3.6)
 - Runs in a runtime environment
 - execution role
+- 15min execution limit
+- new run time every execution
+- Load data from other services such as s3 dynamoDB no persitant
+- Lamaba comes under free tier 1Gb memory 1 million executions per month
 
+### Cloud watch events and Events Bridge
+
+- if X happens or at Y times do Z
+- EventBridge is .... Cloudwatch Events
+- a default Event bus for the account
+- In cloudWatch Events this the only bus(implict)
+- EventBridge can have additional event busses
+- Rules match incoming events .. (or schedules)
