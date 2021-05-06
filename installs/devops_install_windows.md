@@ -149,3 +149,10 @@ C:\Windows\system32> dism /Export-Image /SourceImageFile:"C:\new folders\sources
 ```
 C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools>oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,b"C:\new folders\boot\etfsboot.com"#pEF,e,b"C:\new folders\efi\microsoft\boot\efisys.bin" "C:\new folders" "C:\other\updated_w10.iso"
 ```
+## install git wsl2 vscode
+
+```
+git config --global user.name ""
+git config --global user.email ""
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
+```
