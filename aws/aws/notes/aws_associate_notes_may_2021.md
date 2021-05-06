@@ -1906,19 +1906,33 @@ Can do SSL Pass through
 
 - Can load balance non HTTPS appliactions -doesn't are about anything above TCP/UDP
 
- 
+ ----
 
 ## SSL Offload & Session Stickiness
 
- 
-
 - Bridging
-
+  - Listener is configured for HTTPS Connection is terminiated
+  on ELB & certicate is needed for the domain name
+  - ELB Iniates a new SSL instances need SSL certifcates and the compute required for cryptographic operations
 
 - Passthough
-
+  - Listener is configiured for TCP, NO encryption or decryption happends on NLB connection is passed to backend instance
+  - The client connects Each instance needs appropiate SSL cert install With this architecture there is no certificate exposeure to AWS all self managed and secure, the LB doesn't need certcates installed as it does with bridging 
  
 
 - Offload
+  - Listener is configured for HTTPS connections are terminated and then backend connections use HTTP
+  - ELB to the connections use HTTP no certifacte ir cryptographoc operations
 
- 
+
+  ## Connection Stickiness
+
+  - AWSALB Cookie 1s to 7 days
+  - Server Failour or cookie expries 
+  - Uneven load on backend server.
+
+
+ ### Event Driven Architecture
+
+  - 
+  
