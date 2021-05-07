@@ -156,3 +156,15 @@ git config --global user.name ""
 git config --global user.email ""
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 ```
+
+## install awstools and golang dev with vscode integration
+
+```
+sudo apt-get update
+sudo apt-get install awscli
+aws --version
+sudo wget -c https://dl.google.com/go/go1.16.4.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
+export PATH=$PATH:/usr/local/go/bin
+source ~/.profile
+
+```
