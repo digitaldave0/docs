@@ -63,7 +63,8 @@ Lambda Execution Roles
 Trust Policy  - Lambda - Permissions Policy
  
 Cross Account Access
- 
+---
+
 ## <ins>AWS Organisations</ins>
  
 - Standard AWS Account you create AWS Organisation ( Management Account) Master Account
@@ -115,7 +116,8 @@ Management events, Data events, Insights events
 - IAM, STS, Cloud front => Global Service Events gets logged to us-east-1
 - A trail needs to be enabled to capture the data
 - Cloud Trail is not realtime there is a delay <ins>(15mins delay)</ins>
- 
+
+----
 ## <ins>S3</ins>
  
 - S3 is Private by default
@@ -338,6 +340,8 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Enable Logging on source bucket. (S3 delivery group) best efforts process
 - acl given on target bucket
  
+---
+
 ## Networking
  
 - VPC minimum /28 (16IP), maxium /16 (65456 IPs)
@@ -370,6 +374,8 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### NAT and NAT Gateways
  
+---
+
 ## EC2
  
 - EC2 Architecture (AZ Reslient Hardware)
@@ -529,7 +535,9 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 - Use autorecovery if failed. (only works with EBS not Instance store volumes)
 - remember disableApiTermination
- 
+
+--- 
+
 ### Horizontal vs Vertical Scaling
  
 <u>Vertical Scaling</u>
@@ -659,7 +667,10 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - More Bandwidth
 - Higher packets per second
 - Consistent lower latency
- 
+
+
+---
+
 ## Route 53
  
 - DNS Database (zone file) hosted by route53 (Public Name Servers)
@@ -735,6 +746,8 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### Geoproximity
  
+---
+
 ### Databases
  
 - Row based databases (OLTP) Online Transaction Processing (MYSQL)
@@ -813,11 +826,13 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Much stronger key controls (even from AWS)
  
 ### IAM Authentication
- 
+
 - Authorisation is controlled by DB Engine, Permissons are assigned
 to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Policy attached to Users or Roles maps that identity onto the RDS User
- 
+
+----
+
 ## Amazon Aurora
  
 - Cluster
@@ -883,7 +898,9 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - CDC Only (if you wnat to use an alternative method to transfer the bulk data .. such as native tooling)
 - SCT Schema Conversion Tool
 - No downtime = DMS
- 
+
+---
+
 ## EFS
  
 - EFS is an implementation of NFSv4
@@ -898,7 +915,9 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Storage Classes Standard and IA Classes
 - Standard is the default
 - Life cycle polices can be used with classes
- 
+
+---
+
 ## ALB
  
 - ALB is layer 7 LB understands HTTP/S
@@ -943,7 +962,9 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Think about smaller instances - granualarity
 - USe with ALBs for elasticity - abrasction
 - ASG defines WHEN and WHERE, LT defines WHAT
- 
+
+---
+
 ## NLB
  
 - NLBs are Layer 4 only understanding TCP and UDP
