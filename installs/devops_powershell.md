@@ -37,12 +37,12 @@ New-VM -Name $i -MemoryStartupBytes 512mb -NewVHDPath "C:\Virtual Machines\$i.vh
  ## Delete VM
 ```powershell
  Remove-VM -Name * | where {$_.State -eq 'Off'}
+```
  
- 
- ## create local accounts$Password = Read-Host -AsSecureString
+## create local accounts 
 ```powershell
+$Password = Read-Host -AsSecureString
 Get-Content .\accounts.txt | % {New-LocalUser $_ -Password $Password -FullName $_ -Description "$_." }
  ```
  
  
- ```
