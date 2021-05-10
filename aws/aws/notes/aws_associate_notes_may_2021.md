@@ -1016,3 +1016,81 @@ Can do SSL Pass through
 - In cloudWatch Events this the only bus(implict)
 - EventBridge can have additional event busses
 - Rules match incoming events .. (or schedules)
+
+## API Gateway 
+
+- API Gateway is a managed service from AWS which allows the creation of API Endpoints, Resources & Methods.
+
+- Create, Publish, Monitor and Secure APIs as a Service
+
+- The API gateway integrates with other AWS services - and can even access some without the need for dedicated compute
+
+- It serves as a core component of many serverless architectures using Lambda as event-driven and on-demand backing for methods.
+
+- It can also connect to legacy monolithic applications and act as a stable API endpoint during an evolution from a monolith to microservices and potentially through to serverless.
+
+- Billed based on Number of API Calls, Data Transfer and addtional performance features susch as caching
+
+- Can be used for server archeture
+
+## Serverless architecture 
+
+- Serverless isn't one single thing
+- You manage few if any servers - low overhead
+- Applications are a collection of small & specialised functions
+- ..Stateless and Ephermal enviorments - durantion biling
+- Event driven ..comsuption only when being used
+- FaaS is used where possible for compute functionality
+- Managed services are used where possible  
+
+## SNS
+
+- The Simple Notification Service or SNS .. is a PUB SUB style notification system which is used within AWS products and services but can also form an essential part of serverless, event-driven and 
+traditional application architectures.
+
+- Public AWS Zone
+
+- Delivery Status (Http,Lambda,SQS)
+- Delivery Retries - Reliable Delvery
+- HA and Scalable (Region)
+- Server Side Encryption SSE
+- Cross-Account via <ins>TOPIC Policy</ins>
+
+- Messages are <= 256 payloads
+
+- SNS Topics are based  on entity of SNS permissons and configuration
+
+- Publishers send messages to TOPICS
+
+- Subscribers receive messages SENT to TOPICS. e.g (HTTPs), Email)-JSON,SQS Mobile Push, SNS Messages and Lambda
+
+- SNS supports a wide variety of subscriber types including other AWS services such as LAMBDA and SQS
+
+## Step Functions
+
+- Step functions is a product which lets you build long running serverless workflow based applications within AWS which integrate with many AWS services.
+
+- States and things which occur
+- Maximum Duration 1 year 
+- Standard Workflow and Express workflow 5 mins
+- Started cia API Gateway, IOT Rules,EventBridge, Lamabda
+- Amazon States (ALS) - JSON Temlate
+- IAM Role is used for permisions
+- State machines are long running serverless workflows
+
+### States
+
+- SUCCEED and FAIL
+- WAIT (Wait for point in time or bassed on date)
+- CHOICE (Condition)
+- PARALLEL (Do somthing passed from CHOICE)
+- MAP (List of Things, Orders)
+- TASK (Single unit of work perfomed by a state machine)
+
+## SQS 
+
+- Public, Fully Managed, Highy-Avaiable Queues - Standard or FIFO
+- FIFO Guarantee an order
+- Standard queue best efforts
+- Messages up to 256Kb in size link to large data
+
