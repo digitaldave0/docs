@@ -1179,3 +1179,37 @@ traditional application architectures.
 
 - Access to an s3 bucket can be controlled by using these OAI's - allowing access from an OAI, and using an implicit DENY for everything else.
 
+## Lambda@Edge
+
+- you can run lightweight lambda at edge locations
+- Adjust data between the viewer & origin
+- Supports Node.js and Python
+- Run in the AWS Public Space (Not VPC)
+- Layers are not supported
+- Different Limits vs Normal Lambda Functions
+
+- Connect between  Customer end edge location known as <ins>viewer request</ins> 
+- Edge location and origin known as  <ins>Origin Request</ins>
+- Origin and cloudfron edge known as <ins>Origin Response</ins>
+- Connection between the edge location and the customer known as <ins>Viewer response</ins>
+
+- Limit 1028 Mb 5 Seconds timeout (Viewer Request - Viewer Response)
+- Normal Lambda MB 30 Seconds (Origin Request Origin Response)
+
+<ins>Use Cases</ins>
+
+- A/B Testing - Viewer Request
+- Migration Between S3 Origins - Origin Request
+- Different Objects Based on Device - Origin Request
+- Content By Country - Origin Request
+
+- Lambda@Edge allows cloudfront to run lambda function at CloudFront edge locations to modify traffic between the viewer and edge location and edge locations and origins.
+
+## Global Accelerator
+
+- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using ANycast IP addresses
+- Moves the AWS Network closer to customers
+- Connections enter at edge user anycast IPs
+- Transit over AWS backbone 1+ locations
+- Can be used for NON HTTP/s (TCP/UDP) **Diffrence from cloudFront
+- Global Performance , doesn't cache its a network product Transisting network data.
