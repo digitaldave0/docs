@@ -1141,3 +1141,27 @@ traditional application architectures.
 
 - Amazon Cognito identity pools (federated identities) enable you to create unique identities for your users and federate them with identity providers. With an identity pool, you can obtain temporary, limited-privilege AWS credentials to access other AWS services. 
 
+## CloudFront Architecture Basics
+
+- Cloud Front is a global oject cache (CDN)
+- Content is cached in loaions close to customers
+- Lower latency and higher throughput
+- Load on the content server is decreased 
+- it can handle static and dynamic content
+- Edge > Regional Edge > Origin Fetch
+- Integrates with ACM for HTTPS
+- Upload directs to origins No caching. (PUTS),
+- Cloudfront performs no write caching
+- Forward to Origin, (if yes use for caching ALL or Selected) Yes or No Query String Parameters
+
+
+<ins>Terms</ins>
+
+- Origin - The source location of your content
+- Distribution - The configuraton unit of Cloudfront
+- Edge Location - Local infrastructure which hosts cache of your data
+- Regional Edge Cache - Larger version of edge location. Provides another layer of caching.
+
+
+ 
+
