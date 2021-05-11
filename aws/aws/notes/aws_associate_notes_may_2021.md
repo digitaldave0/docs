@@ -1118,4 +1118,26 @@ traditional application architectures.
 - Public Service & hihly avalible
 - Streams store a 24-hour moving window of data
 - Kinesis data firehose allows the long term persistent storage of kinesis data onto services like S3
+- Producers > Kinesis Stream > Consumers
+- As Single Kinesis stream adds shards
+- 1Mb Ingestion , 2Mb Consumption
+- 24hr roling window can be increased to 7 day for addtional cost
+- Kinesis data Record (1Mb)
+- SQS vs Kinesis injestion of data = Kinesis
+- Streaming data
+- Worker pool, decouple, Asynchronous communications = SQS
+- Kinesis designed for huge scale injestion
+- Data ingestion, Analytics, Montoring, App Clicks
+
+## Amazon Cognito - User and Identity Pools
+
+- Authenication, Authorization and user management for web/mobile apps
+- USER POOLS - Sign-in and get a JSON Web Token JWT
+- IDENTITIY POOLS - Allow you to offer access to Temporary AWS Credentials
+- Web Indentity Federation = userpool = identity pool
+- Federated Indetities SWAP - Google, Facebook, Twitter, SAML2.0 & user Pool for short term AWS Credentials to access AWS Resources
+
+- A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito. Your users can also sign in through social identity providers like Google, Facebook, Amazon, or Apple, and through SAML identity providers. Whether your users sign in directly or through a third party, all members of the user pool have a directory profile that you can access through a Software Development Kit (SDK).
+
+- Amazon Cognito identity pools (federated identities) enable you to create unique identities for your users and federate them with identity providers. With an identity pool, you can obtain temporary, limited-privilege AWS credentials to access other AWS services. 
 
