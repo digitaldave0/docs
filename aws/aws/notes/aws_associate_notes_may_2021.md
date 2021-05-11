@@ -1093,4 +1093,29 @@ traditional application architectures.
 - FIFO Guarantee an order
 - Standard queue best efforts
 - Messages up to 256Kb in size link to large data
+- Received messages are hidden <ins>(VisibilityTimeout)</ins> hidden for ammount of time then reppears (retry) or are explicitly deleted.
+- Dead-Letter queues can be used for problem messages (5 or more times)
+- ASGs can scale and Lambdas inovle based on queue length
+
+- Worker Pool. 
+- Web Pool 
+- SNS and SQS Fanout - each size has its own queue and autoscaling group.
+- SQS queues are a managed message queue service in AWS which help to decouple application components, allow Asynchronous messaging or the implementation of worker pools.
+- Standard queues at-least once, FIFO = exactly-once
+- FIFO (Performance)
+- 1 request = 1-10 messages up 258kb total 
+- Short (immediate) va Long(waitTimeSeconds)Polling
+- Long polling uses fewer requests
+- Encrypton at rest (KMS) & in-transit
+- Indentity Policy or Queue Policy
+
+## Kinesis & Kinesis Firehose
+
+- Kinesis data streams are a streaming service within AWS designed to ingest large quantities of data and allow access to that data for consumers
+- Producers send data into kinesis stream
+- Streams can scales from low to near infinte data rates
+- Kinesis is ideal for dashboards and large scale real time analytics needs.
+- Public Service & hihly avalible
+- Streams store a 24-hour moving window of data
+- Kinesis data firehose allows the long term persistent storage of kinesis data onto services like S3
 
