@@ -1162,6 +1162,20 @@ traditional application architectures.
 - Edge Location - Local infrastructure which hosts cache of your data
 - Regional Edge Cache - Larger version of edge location. Provides another layer of caching.
 
+## ACM  (AWS certificate Manager)
 
- 
+- HTTP - Simple and Insecure
+- HTTPS - SSL/TLS Layer of Encryption added to HTTP
+- Data is encrypted in transit
+- Cetificates prove identity
+- Signed by a trusted authority CA
+- Create, renew and deploy certifcates with ACM
+- Supported AWS Services ONLY (e.g Cloudfront and ALBs .. NOT EC2)
+- Cloudfront if communicatiny with edge and orgin with https it needs to use a trusted signed certificate
+
+## Securing CF and S3 using OAI
+
+- Origin Access Identities are a feature where virtual identities can be created, associated with a CloudFront Distribution and deployed to edge locations.
+
+- Access to an s3 bucket can be controlled by using these OAI's - allowing access from an OAI, and using an implicit DENY for everything else.
 
