@@ -63,7 +63,7 @@ Lambda Execution Roles
 Trust Policy  - Lambda - Permissions Policy
  
 Cross Account Access
----
+
 
 ## <ins>AWS Organisations</ins>
  
@@ -117,7 +117,7 @@ Management events, Data events, Insights events
 - A trail needs to be enabled to capture the data
 - Cloud Trail is not realtime there is a delay <ins>(15mins delay)</ins>
 
-----
+-
 ## <ins>S3</ins>
  
 - S3 is Private by default
@@ -340,7 +340,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Enable Logging on source bucket. (S3 delivery group) best efforts process
 - acl given on target bucket
  
----
+
 
 ## Networking
  
@@ -374,7 +374,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### NAT and NAT Gateways
  
----
+
 
 ## EC2
  
@@ -536,7 +536,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Use autorecovery if failed. (only works with EBS not Instance store volumes)
 - remember disableApiTermination
 
---- 
+ 
 
 ### Horizontal vs Vertical Scaling
  
@@ -669,7 +669,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Consistent lower latency
 
 
----
+
 
 ## Route 53
  
@@ -746,7 +746,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### Geoproximity
  
----
+
 
 ### Databases
  
@@ -831,7 +831,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Policy attached to Users or Roles maps that identity onto the RDS User
 
-----
+-
 
 ## Amazon Aurora
  
@@ -899,7 +899,7 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - SCT Schema Conversion Tool
 - No downtime = DMS
 
----
+
 
 ## EFS
  
@@ -916,7 +916,7 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Standard is the default
 - Life cycle polices can be used with classes
 
----
+
 
 ## ALB
  
@@ -963,7 +963,7 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - USe with ALBs for elasticity - abrasction
 - ASG defines WHEN and WHERE, LT defines WHAT
 
----
+
 
 ## NLB
  
@@ -973,7 +973,7 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - 1 interface w/ static IP per AZ and use Elastic IP (whitelisting)
 Can do SSL Pass through
 - Can load balance non HTTPS appliactions -doesn't are about anything above TCP/UDP
- ----
+ -
 ## SSL Offload & Session Stickiness
 - Bridging
   - Listener is configured for HTTPS Connection is terminiated
@@ -992,7 +992,7 @@ Can do SSL Pass through
   - Server Failour or cookie expries 
   - Uneven load on backend server.
 
----
+
 
 ## Event Driven Architecture
 
