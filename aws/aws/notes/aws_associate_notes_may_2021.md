@@ -1276,9 +1276,7 @@ by allowing access ONLY from a gateway endpoint.
 - Interface endpoints use DNS
 - Endpoint Regional DNS 
 - Endpoint Zonal DNS
-- PrivateDNS overrides the defaulr DNS for services
-
-
+- PrivateDNS overrides the default DNS for services
 
 - Interface endpoints are used to allow private IP addressing to access public AWS services.
 - S3 and DynamoDB are handled by gateway endpoints - other supported services are handled by interface endpoints.
