@@ -1248,8 +1248,38 @@ traditional application architectures.
 - <ins>action</ins>
 - log-status
 
+## Egress-Only Internet gateway
+
+- Egress-Only internet gateways allow outbound (and response) only access to the public AWS services and Public Internet for IPv6 enabled instances or other VPC based services.
+
+## VPC Endpoints (Gateway)
+
+- Provide private access to S3 and DynamoDB
+- Per servuice per region
+- Prefix List added to route table => Gateway Endpoint
+- Highly Avaible (HA across all AZs in region by default)
+- Endpoint policy is used to control what it can access
+- Regional .. can't access crosss-region services
+- Prevent Leak Buckets - S3 Bucket can be set to private only
+by allowing access ONLY from a gateway endpoint.
+
+
+## VPC Endpoints (Interface)
+
+- Inteface enpoints are not Highly avalable
+- Added to specfic an ENI not HA
+- For HA add one endpoint to one subnet, per AZ used in VPC
+- Network access controlled via Security Groups
+- Endpoint policies - rescirct what can be done with endpoint
+- TCP and IPv4 ONLY
+- Uses PrivateLink
+- Interface endpoints use DNS
+- Endpoint Regional DNS 
+- Endpoint Zonal DNS
+- PrivateDNS overrides the defaulr DNS for services
 
 
 
-
-
+- Interface endpoints are used to allow private IP addressing to access public AWS services.
+- S3 and DynamoDB are handled by gateway endpoints - other supported services are handled by interface endpoints.
+- Unlike gateway endpoints - interface endpoints are not highly available by default - they are normal VPC network interfaces and should be placed 1 per AZ to ensure full HA.
