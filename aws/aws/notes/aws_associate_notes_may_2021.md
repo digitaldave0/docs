@@ -1213,3 +1213,43 @@ traditional application architectures.
 - Transit over AWS backbone 1+ locations
 - Can be used for NON HTTP/s (TCP/UDP) **Diffrence from cloudFront
 - Global Performance , doesn't cache its a network product Transisting network data.
+
+## VPC FLow Logs
+
+- Capture packet Metadata .. Not packet contents
+- Applied at a VPC - All interfaces in that VPC
+- Subnet - interfaces in that subnet
+- Internet directly
+- VPC Flow Logs are NOT realtime
+- Destination can be S£ or CloudWatch Logs
+- ICMP =1, TCP=6, UDP=17
+- srcaddr followed by dstaddr
+- Flow logs does't capture 
+ - 169.254.169.254 (metadata instance)
+ - Amazon DNS Server and Amazon Windows license or DHCP Traffic 
+- VPC FLow logs is a feature allowing the monitoring of traffic flow to and from interfaces within a VPC
+- VPC Flow logs can be added at a VPC, Subnet or Interface level.
+- Flow Logs DON'T monitor packet contents ... that requires a packet sniffer.
+
+<ins>List</ins>
+
+- version
+- accountid
+- interface-id
+- <ins>srcaddr</ins>
+- <ins>dstaddr</ins>
+- <ins>srcport</ins>
+- <ins>dstport</ins>
+- <ins>protocol</ins>
+- packets
+- bytes
+- start
+- end
+- <ins>action</ins>
+- log-status
+
+
+
+
+
+
