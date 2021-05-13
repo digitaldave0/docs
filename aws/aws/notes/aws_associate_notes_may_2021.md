@@ -1281,3 +1281,19 @@ by allowing access ONLY from a gateway endpoint.
 - Interface endpoints are used to allow private IP addressing to access public AWS services.
 - S3 and DynamoDB are handled by gateway endpoints - other supported services are handled by interface endpoints.
 - Unlike gateway endpoints - interface endpoints are not highly available by default - they are normal VPC network interfaces and should be placed 1 per AZ to ensure full HA.
+
+## VPC Peering
+
+- Direct encrypted network link between two VPCs
+- Works same/cross-region and same/cross-account
+- (optional Public Hostnames reslove to private IPs
+- Same region SGs can reference peer SGs
+- VPC Peering does NOT support transtive peering
+- Routing Configuration is needed, SGs & NACLs can filter
+- Routing tables at both sides of teh peering connection are needed, directing the flow for the remote CIDR at perr gateway object
+- VPC Peering connections cannot by created where there is overlap in the VPC CIDRS Ideally NEVER use the same address ranges in multiple VPcs.
+- NO VPC Peer between A and C doesn't work,peering is not Transtive
+
+- VPC peering is a software define and logical networking connection between two VPC's
+
+- They can be created between VPCs in the same or different accounts and the same or different regions.
