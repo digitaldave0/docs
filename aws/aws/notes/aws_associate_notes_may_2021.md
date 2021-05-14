@@ -1368,4 +1368,3 @@ required
 - The AWS Transit gateway is a network gateway which can be used to significantly simplify networking between VPC's, VPN and Direct Connect.
 
 - It can be used to peer VPCs in the same account, different account, same or different region and supports transitive routing between networks.
-
