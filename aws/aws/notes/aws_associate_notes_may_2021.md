@@ -1255,11 +1255,11 @@ traditional application architectures.
 ## VPC Endpoints (Gateway)
 
 - Provide private access to S3 and DynamoDB
-- Per servuice per region
+- Per service per region
 - Prefix List added to route table => Gateway Endpoint
 - Highly Avaible (HA across all AZs in region by default)
 - Endpoint policy is used to control what it can access
-- Regional .. can't access crosss-region services
+- Regional .. can't access cross-region services
 - Prevent Leak Buckets - S3 Bucket can be set to private only
 by allowing access ONLY from a gateway endpoint.
 
@@ -1297,3 +1297,42 @@ by allowing access ONLY from a gateway endpoint.
 - VPC peering is a software define and logical networking connection between two VPC's
 
 - They can be created between VPCs in the same or different accounts and the same or different regions.
+
+## AWS Site to Site VPN
+
+- A logical connection between a VPC and on-premises network
+encrypted using IPSec, running ovet the public network
+- Full HA if you dessign and implement it correctly
+- Quick to provision .. lee than hour
+- Virtual Private Gateway (VGW)
+- Customer Gateway (CGW)
+- VPN Connection between the (VGW) and (CGW)
+- Dynamic VPNs need BGP (ASN)
+- Route Propergation form (VGW)
+- Speed Limitations 1.25Gps
+- Latency Coniserations - inconsistent, public, internet
+- Cost AWS hourly cost, GB out cost, data cap (on premises)
+- Speed if setop - hours .. all software coniguration
+- Can be used as a backup for Direct Connect (DX)
+- Can be used with Direct Connect(DX)
+
+## AWS Direct Connect (DX)
+
+- A 1Gbps or 10Gbps Network Port into AWS
+- at a DX Location (1000-Base-LX ot 10GBASE-LR)
+- to you customer router (requires VLANS/BGP)
+- or Partner Router (if extending to you location)
+- Multiple Virtual Interfaces (VIFS) over one DX
+- Private VIF(VPC) & Public VIF(Public Zone Services)
+- NO HA and NO Encryption
+- Public VIF = Public AWS Services (NO Public Internet)
+- VIFS = one VLAN & Once BGP session at the client side
+- Private VIF = One VPC (Multiple Private VIFS)
+- Take Much longer to provision vs VPN
+- DX Port provisioning the cross connect takes longer
+- extenstion to premises can take weeks/months
+- Use VPN first then replace with DX (Or leave as backup)
+- Faster .. 40Gbps with Aggregation
+- Low consistent lactency, doesn't use business bandwidth
+- (DX) = NO Encyption
+- IPSEC VPN Over public VIF 
