@@ -1323,7 +1323,7 @@ encrypted using IPSec, running ovet the public network
 - to you customer router (requires VLANS/BGP)
 - or Partner Router (if extending to you location)
 - Multiple Virtual Interfaces (VIFS) over one DX
-- Private VIF(VPC) & Public VIF(Public Zone Services)
+- Private VIF(VPC) & Public VIF (Public Zone Services)
 - NO HA and NO Encryption
 - Public VIF = Public AWS Services (NO Public Internet)
 - VIFS = one VLAN & Once BGP session at the client side
@@ -1336,3 +1336,36 @@ encrypted using IPSec, running ovet the public network
 - Low consistent lactency, doesn't use business bandwidth
 - (DX) = NO Encyption
 - IPSEC VPN Over public VIF 
+
+## Direct Connect (DX) Resilience and HA
+
+- AWS Regions have multiple Direct connect (DX)
+- Locations these are normally metro DCs
+- DX Locations are connected to the AWS region via redundant high speed 
+connections
+- AWS DX Router > Customer Provider DX Router (vi Cross Connect Cable)
+- A DX is extended from the DX locations to customer premises
+- 2 DX connections > Provisoned 2 Seperate Customer DX Routers > 2 Customer Premises Routers
+
+## Transit Gateway (TGW)
+
+- Network Transit Hub to connect VPCs to on premises networks
+- Significantly reduces network complexity
+- Single network object - HA and Scalable
+- Attachemnets to there network types
+- VPC, Site-to-Site VPN & Direct Connect Gateway
+- VPC Attachments are configured with a subnet in each AZ where service is
+required
+- Peering Attchment (Cross-Region Same/Cross Account)
+- TGW can intrgrate with direct connect gateway using transit VIF
+- TGW supports multipul route tables allowing complex routing architectures.
+- TGW Supports transitive routing
+- Can be used to create global networks
+- Share between accounts using AWS RAM
+- Peer with diffrent regions .. same or cross account
+- Less complexity vs w/o TGW
+
+- The AWS Transit gateway is a network gateway which can be used to significantly simplify networking between VPC's, VPN and Direct Connect.
+
+- It can be used to peer VPCs in the same account, different account, same or different region and supports transitive routing between networks.
+
