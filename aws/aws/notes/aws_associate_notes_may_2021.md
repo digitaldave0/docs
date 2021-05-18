@@ -1368,3 +1368,23 @@ required
 - The AWS Transit gateway is a network gateway which can be used to significantly simplify networking between VPC's, VPN and Direct Connect.
 
 - It can be used to peer VPCs in the same account, different account, same or different region and supports transitive routing between networks.
+
+## AWS Storage Gateway 
+
+- Hybrid Storage Virtual Appliance (On-Premises)
+- Extension of File & Volume Storage into AWS
+- Volume storage backups into AWS 
+- Tape Backups into AWS
+- Migration of existing infrastructure
+
+- Modes 
+ - Tape Gateway (VTL) Mode
+    - Virtual tapes => S3 and Glacier
+ - File Mode - SMB and NFS
+ - Volume Mode (Gateway/Stored) - iSCSI
+  - Block storage backup S3 and EBS Snapshots
+
+- File Gateway
+
+
+
