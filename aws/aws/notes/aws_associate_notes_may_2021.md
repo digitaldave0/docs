@@ -1384,7 +1384,75 @@ required
  - Volume Mode (Gateway/Stored) - iSCSI
   - Block storage backup S3 and EBS Snapshots
 
-- File Gateway
+- File Gateway mode.
+    - SMB shares can integrate with active directory for file authorisation
+    - Files are store to shares using NFS or SMB
+    - Life cycle policies can automatically control Storage Classes
+    - Mapped dierctly 1:1 as s3 objects.
+    - Additional Capictiy or Decomm existing file storage infrastructure.
 
+- Tape Gateway (VTL)
+    - Tape gatway mode (Pretends to be iSCSI tape, library, changer and drive)
+    - Virtual tape 100 Gib -> 5 TiB
+    - 1PB total storge across 1500 virtual tapes
+    - Active tapes are stored in s3,archived/exported tapes
+    are stored in VTS in Glacer
 
+- Volume Gateway (Stored) (Migrations Data Recovery) Local stoarge Primary
+    - App Server on Premises 
+        - Local storage & Upload Buffer => Storage gateway endpoint => EBS Snapshots
+        - 16TB per volume, 32 Volumes (MAX)
+        - 512TB total capacity 
 
+    - Primary data is stored on-premises 
+    - backup data is asynchronusly replicated to AWS
+    - Volumes are made avalible via iSCSi for network based servers to acesss (single connection per volume
+    unless servers are clustered)
+    - Ideal for backup, migrations and business data continuity
+
+- Volume Gateway(Cached) (Frequently accessed data) AWS Primary
+  - Volumes are made avalible via iSCSi for network based server to 
+  access (single connection per volume unless servers are clustered)
+  - Primary Data is stored in AWS. Data which is accessed frequently is cached locally
+  Ideal for extending storage into AWS.
+  - Frequently accessed data
+  - Limited Local staorge capacity
+  - 32TB per volume, 32 volumes (MAX)
+  - 1PB total capacity
+
+  ## Snowball, Snowedge Snowmobile
+
+  - Move large amounts of data IN or OUT of AWS
+  - Physical Storage
+  - Ordered from AWS Empty, Load up, Return
+  - Ordered from AWS with data, empty & Return
+
+  ### Snow ball (Storage)
+
+- Ordered from AWS, Log a job, Device Delivered (not instant)
+- Data Encrpytion uses KMS
+- 50TB or 80TB Capacity
+- 1 Gbps (RJ45 1Gbase-TX) or 10Gbs (LR/SR) Network
+- 10 TB to 10 PB economical range (multiple devices)
+- Multiple devices to multiple premises
+- Only Storage
+
+  ### Snowball Edge (Storage - Compute)
+
+- Both Stoarge and Compute
+- Larger capacity vs Snowball
+- 10 Gbs (RJ45), 10/24(SFP), 45/50/100 Gbs(QSFP+)
+    - Storage Optimized (with EC2) - 80TB, 25 vCPU, 32Gib RAM,1TB SSD
+    - Compute Optimized - 100TB + 7.68 NVME, 52 vCPU and 208 Gib RAM
+    - Compute with GPU as above .. with GPU
+    - ideal for remote sites or where data processing is needed
+
+  ### Snowmobile
+
+- Portal Data Centre within a shipping contatiner on a truck
+- Special order
+- Ideal for single location when 10 PB+ is required
+- Up to 100PB per snowmobile
+- not encomical for multi-site(unless huge) or sub 10PB
+
+## Directory Service
