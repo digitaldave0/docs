@@ -1488,7 +1488,7 @@ required
     - Keeps metadata (e.g permissions/timestamps)
     - Built in data validation
 
-- Key fetaures
+- Key features
     - Scalable - 10Gbs per agent (~100TB per day)
     - Bandwidth Limiters (avoid link saturation)
     - Incremental and scheduled transfer options
@@ -1504,56 +1504,57 @@ required
 
 ## FSx for Windows Servers
    
-    - Fully Managed native windows fileservers
-    - Designed for integration windows environments
-    - Integrate with Directory Service or Self managed AD
-    - Single or Multi-AZ mode within a VPC
-    - On-demand and Scheduled Backups
-    - Accessible using VPC, Peering, VPN, Direct Connect
-    - Supports managed of self managed AD (on premises)
-    - Native windows filesystem, supports de-duplication, Distrubuted File system DFS, KMS at rest encryption and enforced encryption in transit
-    - allows for volume shadow copies (file level versioning)
-    - highly performant range from 8MB/s 2GB/s, 100k IOPS <1ms latency
-    - VSS - User-Driven Restores
-    - Native file systems accessible over SMB
-    - Windows permission model
-    - Supports DFS .. scale out file share structure
-    - Managed - no file server admin
-    - Integrates with DS and your own directory
+- Fully Managed native windows fileservers
+- Designed for integration windows environments
+- Integrate with Directory Service or Self managed AD
+- Single or Multi-AZ mode within a VPC
+- On-demand and Scheduled Backups
+- Accessible using VPC, Peering, VPN, Direct Connect
+- Supports managed of self managed AD (on premises)
+- Native windows filesystem, supports de-duplication, Distrubuted File system DFS, KMS at rest encryption and enforced encryption in transit and allows for volume shadow copies (file level versioning)
+- highly performant range from 8MB/s 2GB/s, 100k IOPS <1ms latency
+- VSS - User-Driven Restores
+- Native file systems accessible over SMB
+- Windows permission model
+- Supports DFS .. scale out file share structure
+- Managed - no file server admin
+- Integrates with DS and your own directory
 
+- FSx for Windows Servers provides a native windows file system as a service which can be used within AWS, or from on-premises environments via VPN or Direct Connect
 
-    - FSx for Windows Servers provides a native windows file system as a service which can be used within AWS, or from on-premises environments via VPN or Direct Connect
-    - FSx is an advanced shared file system accessible over SMB, and integrates with Active Directory (either managed, or self-hosted).
-    - It provides advanced features such as VSS, Data de-duplication, backups, encryption at rest and forced encryption in transit.
+- FSx is an advanced shared file system accessible over SMB, and integrates with Active Directory (either managed, or self-hosted).
+    
+- It provides advanced features such as VSS, Data de-duplication, backups, encryption at rest and forced encryption in transit.
 
 ## FSx for Lustre
 
-    - Managed Lustre - Designed for HPC - LINUX Clients (POSIX)
-    - Manachine Learning, Big Data, Fincail Modelling
-    - 100 GB/s throughput & sub millisecond latency
-    - Deployment types - Persistent or Scratch
-    - Scratch Highly optmised for Short term no replication & fast
-    - Persistent - Longer term, HA (in one AZ),self-healing
-    - Acessible over VPN or Direct Connect
+- Managed Lustre - Designed for HPC - LINUX Clients (POSIX)
+- Machine Learning, Big Data, Fincail Modelling
+- 100 GB/s throughput & sub millisecond latency
+- Deployment types - Persistent or Scratch
+
+- Scratch Highly optmised for Short term no replication & fast
+    
+- Persistent - Longer term, HA (in one AZ),self-healing
+- Acessible over VPN or Direct Connect
 
 
-    S3 Bucket(Respositry) > Fsx Lustre(file system)
-    - Data is Lazy loaded from S3 (S3 linked reposisty) into the file system as needed
-    - Sync changes data can be exported using s3 hsm_archive command
-    - Metadata stored on Metadadta Tragets (MDTs)
-    - Objects are stored on called object targets (OSTs) (1.17TiB)
-    - Baseline performance based on size
-    - Size min 1.2iB then increments to 2.4TiB
-    - for stratch - BAse 200 MB/s per TiB of storage
-    - Persistent uo to 1,300 MB/s per TiB (Credit System)
+- S3 Bucket(Respositry) > Fsx Lustre(file system)
+- Data is Lazy loaded from S3 (S3 linked reposisty) into the file system as needed
+    
+- Sync changes data can be exported using s3 hsm_archive command
+- Metadata stored on Metadadta Tragets (MDTs)
+- Objects are stored on called object targets (OSTs) (1.17TiB)
 
-    - Stratch is designed for pure performance
-        - Short term or temp workloads
-        - NO HA or REPLICATION
+- Baseline performance based on size
+- Size min 1.2iB then increments to 2.4TiB
+- for stratch - Base 200 MB/s per TiB of storage
+- Persistent uo to 1,300 MB/s per TiB (Credit System)
 
-    - Persistent has replication within ONE AZ only
+- Stratch is designed for pure performance
+    - Short term or temp workloads
+    - NO HA or REPLICATION
+
+- Persistent has replication within ONE AZ only
     - Auto-heals when hardward failure occurs
-    - you can backup to s3 with both (manual or automatic 0-35 days retention) 
-
-
-
+    - you can backup to s3 with both (manual or automatic 0-35 days retention)
