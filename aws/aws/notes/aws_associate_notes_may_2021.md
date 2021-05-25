@@ -1456,3 +1456,104 @@ required
 - not encomical for multi-site(unless huge) or sub 10PB
 
 ## Directory Service
+
+- Store objects (users, groups, computers and filer servers) with a structire (domain/tree) inverted tree
+- Mutilple tress can be grouped 
+- AWS Managed Implementation. no admin overhead 
+- Run within a VPC
+- To implement HA .. deply inito multiple AZs
+- Some AWS Services NEED a directory e.g. Amamzon Workspaces
+- Can be isolated
+- or integrated with on-premises systems
+- or act as a proxy back to on-premise
+
+- Simple AD Mode. An implementation of Samba 4 (compatibility with basics AD functions)
+    - 2 size small 500(users) large 5000(users)
+
+- AWS Managed Microsoft AD - An actual Microsoft AD DS Implementation
+    - Instance of AD inside AWS 
+    - Service can integreate with AWS
+    - Create a trust between AWS and on-premises 
+    - Reslient if the VPN fails services in AWS will still be able
+    to access the local directory directory service
+
+- AD Connector
+    - Allows AWS services which NEED a directory to use an existing on-premises directory
+    - if the private connectivity fails the AD proxy won't function - interrupting service at the AWS side
+
+- AWS Datasync
+    - Data Transfer service TO and from AWS
+    - Migrations, Data Processing Transfersm Archival Cost effective storage or DR/BC
+    - Designed to work at hugh scale.
+    - Keeps metadata (e.g permissions/timestamps)
+    - Built in data validation
+
+- Key fetaures
+    - Scalable - 10Gbs per agent (~100TB per day)
+    - Bandwidth Limiters (avoid link saturation)
+    - Incremental and scheduled transfer options
+    - Compression and encryption
+    - Automatic recovery from transit errors
+    - AWS Service integration - S3, EFS, FSx
+    - Pay as you use .. per GB cost for data moved
+    - Integates with EFS and Fsx
+
+    - Task a job within datasync, defines what is being synced, how quickly and from where to where
+    - Agent software used to read or write to on premises data stores using NFS or SMB
+    - Location every task has two locations FROM and TO E.g. Network File System (NFS), Server Message Block (SMB), Amazon EFS, Amazon FSx and Amazon S3
+
+## FSx for Windows Servers
+   
+    - Fully Managed native windows fileservers
+    - Designed for integration windows environments
+    - Integrate with Directory Service or Self managed AD
+    - Single or Multi-AZ mode within a VPC
+    - On-demand and Scheduled Backups
+    - Accessible using VPC, Peering, VPN, Direct Connect
+    - Supports managed of self managed AD (on premises)
+    - Native windows filesystem, supports de-duplication, Distrubuted File system DFS, KMS at rest encryption and enforced encryption in transit
+    - allows for volume shadow copies (file level versioning)
+    - highly performant range from 8MB/s 2GB/s, 100k IOPS <1ms latency
+    - VSS - User-Driven Restores
+    - Native file systems accessible over SMB
+    - Windows permission model
+    - Supports DFS .. scale out file share structure
+    - Managed - no file server admin
+    - Integrates with DS and your own directory
+
+
+    - FSx for Windows Servers provides a native windows file system as a service which can be used within AWS, or from on-premises environments via VPN or Direct Connect
+    - FSx is an advanced shared file system accessible over SMB, and integrates with Active Directory (either managed, or self-hosted).
+    - It provides advanced features such as VSS, Data de-duplication, backups, encryption at rest and forced encryption in transit.
+
+## FSx for Lustre
+
+    - Managed Lustre - Designed for HPC - LINUX Clients (POSIX)
+    - Manachine Learning, Big Data, Fincail Modelling
+    - 100 GB/s throughput & sub millisecond latency
+    - Deployment types - Persistent or Scratch
+    - Scratch Highly optmised for Short term no replication & fast
+    - Persistent - Longer term, HA (in one AZ),self-healing
+    - Acessible over VPN or Direct Connect
+
+
+    S3 Bucket(Respositry) > Fsx Lustre(file system)
+    - Data is Lazy loaded from S3 (S3 linked reposisty) into the file system as needed
+    - Sync changes data can be exported using s3 hsm_archive command
+    - Metadata stored on Metadadta Tragets (MDTs)
+    - Objects are stored on called object targets (OSTs) (1.17TiB)
+    - Baseline performance based on size
+    - Size min 1.2iB then increments to 2.4TiB
+    - for stratch - BAse 200 MB/s per TiB of storage
+    - Persistent uo to 1,300 MB/s per TiB (Credit System)
+
+    - Stratch is designed for pure performance
+        - Short term or temp workloads
+        - NO HA or REPLICATION
+
+    - Persistent has replication within ONE AZ only
+    - Auto-heals when hardward failure occurs
+    - you can backup to s3 with both (manual or automatic 0-35 days retention) 
+
+
+
