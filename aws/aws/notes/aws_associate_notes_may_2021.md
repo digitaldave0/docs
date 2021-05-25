@@ -678,9 +678,9 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### Private hosted Zone
  
-- A Private Hossted Zone is a public hosted zone which isn't public
+- A Private Hosted Zone is a public hosted zone which isn't public
 - Associated with VPCs, An is only accessible in those VPCs
-- Using accounts is supoorted via CLI/API
+- Using accounts is supported via CLI/API
 - Split-view (overlapping public and private) for Public and Internal use the same zone name
  
 ### CNAME vs Alias
@@ -691,36 +691,36 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - There is no charge for ALIAS requests pointing at AWS resources
 - For AWS Services - default to picking Alias records
 - Should be the same Type as what the record is pointing at
-- API Gateway, cloudfront, Elastic Beanstalk, ELB,Global Acclerator & S3 = Alias A Records
+- API Gateway, cloudfront, Elastic Beanstalk, ELB,Global Accelerator & S3 = Alias A Records
  
 ### Simple routing
  
 - One record per name , each records can have multiple values
-- simple routing does not supprt health checks
+- simple routing does not support health checks
  
 ### Health Checks
  
-- Health checks are seprate from, but are used by records
+- Health checks are separate from, but are used by records
 - Health checkers are located globally
 - Health checker check every 30s (every 10s costs extra)
 - Checks can be TCP,HTTP,HTTP HTTP/HTTPS with string matching
-- Three types of checks Enpoint, CloudWatch Alarm, Checks of Checks (Caclulated)
+- Three types of checks Endpoint, CloudWatch Alarm, Checks of Checks (Calculated)
 - if 18%+ of health checkers report as healthy, the health check is healthy
  
 ### Failover routing
  
-- With failover routing you can add mutlipul records of the same name Primary, Secondary
-- A common architecture is to use failover for a "out of band" failure maintence page for a service
-- The health event occurs on the primary record, if the prmary value fails the check returns the second value
-- Use it for active/ passive failover scenerios
-- Active backup architures were s3 is used as backup
+- With failover routing you can add multiple records of the same name Primary, Secondary
+- A common architecture is to use failover for a "out of band" failure maintenance page for a service
+- The health event occurs on the primary record, if the primary value fails the check returns the second value
+- Use it for active/ passive failover scenarios
+- Active backup architectures were s3 is used as backup
  
 ### Multi value routing
  
 - Hosted zone, many records same name
-- Each record can have an assocted health check. 
-- up to 8 healthy records are returned if more than 8 exist 8 are randomy selected from the set
-- Improves avaliblity - active active request
+- Each record can have an associated health check. 
+- up to 8 healthy records are returned if more than 8 exist 8 are randomly selected from the set
+- Improves availability - active active request
 - It is not a replacement for load balancing
  
 ### Weighted routing
@@ -731,88 +731,88 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### Latency Based Routing
  
-- Use latency based routing when optimising for performance and user experience
-- Speficy a record with the same name per region
-- In the background AWS maintains a database of latency betweet general locations
+- Use latency based routing when optimizing for performance and user experience
+- Specify a record with the same name per region
+- In the background AWS maintains a database of latency between general locations
  
-### Gelocation Routing
+### Geo Location Routing
  
-- When you create gelocationrecords you tag them with the location
-- ISO Country, contiant codes, sub devision
-- Geolaction doesn't return the closest records only the relevant
+- When you create geo location records you tag them with the location
+- ISO Country, continent codes, sub division
+- Geo location doesn't return the closest records only the relevant
  
-### Geoproximity
+### Geo Proximity
  
 
 
 ### Databases
  
 - Row based databases (OLTP) Online Transaction Processing (MYSQL)
-- Columm Store (Redshift)
+- Column Store (Redshift)
  
-- Graph database , socal media HR, Systems with complex relationships.
+- Graph database , social media HR, Systems with complex relationships.
  
 ## ACID - BASE
  
-- ACID and BASE are DB transction models
+- ACID and BASE are DB transaction models
 - Partition Tolerant (Resilience), Consistency, Availability
 - ACID = Consistency
-    - Atomic, Conisitent, Isolated, Durable = RDS limits scaling (Fincical Instutions)
-- BASE = Availablity
-    - Basically Available, Soft State, Eventually Consistent (any reads to a database ae evently consistant)
+    - Atomic, Consistent, Isolated, Durable = RDS limits scaling (Finical Instructions)
+- BASE = Availability
+    - Basically Available, Soft State, Eventually Consistent (any reads to a database are eventually consistent)
     - Highly scalable (Dynamodb) NOSQL Databses
  
 ## Database on EC2
  
 - Access to the DB instance OS Level Access
-- Adavnced DB Option tuning (DBROOT)
+- Advanced DB Option tuning (DBROOT)
 - Vendor demands
 - DB or DB Version AWS don't provide.
  
 ## RDS Database 
  
-- Create subnet group to add subents in group
+- Create subnet group to add subnets in group
 - it how rds knows where to place instance into.
  
 ## RDS MuiltAZ
  
 - No Free Tier extra cost for standby replica
 - Standby can't be directly used.
-- 60- 120 seconds Highy available  not faunt tollerant
+- 60- 120 seconds Highly available  not fault tolerant
 - Same region only (other AZs in the VPC)
 - Backups taken from the standby replica (removes performance impact)
 - AZ Outage, Primary Failure,Manual failover,instance type change and software patching
-- Syncrozious Repolication
+- Synchronous Replication
  
 ## RDS Backups and Restores
  
 - RTO Recovery Time Objective
 - RPO Recovery Point Objective
-- Creates a new rds instance (creates a new address) when you retore
+- Creates a new rds instance (creates a new address) when you restore
 - Automated = any 5 minute point in time
-- Backup is restored and transctiob logs are replyaed to bring DB to desired point in time
+- Backup is restored and transaction logs are replayed to bring DB to desired point in time
 - Restores aren't fast - think RTO
  
 ## RDS Read-Replicas
  
-- Performance, Avaliabilty
+- Performance, Availability
 - Async means read replica
 - Sync means multi az
 - 5x direct read-replicas per db instance
-- Snapshots and backups Impove RPO
+- Snapshots and backups Improve RPO
 - RTOs are a problem
 - RRs offer nr 0 RPO
 - RRs can be promoted quickly low RTO
 - Failure only - watch for data corruption
 - Read only until promoted
-- Global avaliability improvments.. global resilience
+- Global availability improvements.. global resilience
  
 ## RDS Security
  
 - SSL/TLS in transit is available for RDS, can be mandatory
 - RDS supports EBS Volumes encryption - KMS
 - Handled by HOSTS/EBS
-- AWS Customer Managed Key gernerates data keys
+- AWS Customer Managed Key generates data keys
 - Data Keys are used for encryption operations
 - Storage, Logs, Snapshots are replicas are encrypted
  
@@ -824,34 +824,33 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### IAM Authentication
 
-- Authorisation is controlled by DB Engine, Permissons are assigned
-to the local DB User IAM is NOT Used to authorise, only for authentication.
+- Authorization is controlled by DB Engine, Permissions are assigned
+to the local DB User IAM is NOT Used to authorize, only for authentication.
 - Policy attached to Users or Roles maps that identity onto the RDS User
 
--
 
 ## Amazon Aurora
  
 - Cluster
-- A single prmary instance + 0 or replicas
+- A single primary instance + 0 or replicas
 - No local storage, uses a shared cluster volume, SSD Based 128Tib 6 Replicas AZs
-- Primmary Instnce and a number of replicas, replication happens at a storage level.
+- Primary Instance and a number of replicas, replication happens at a storage level.
 - Cross 3 AZs, Avoids data loss
 - Up to 15 Replicas and any of them can be the failover target for replication.
 - All SSD Based on High IOPS, Low latency
 - Storage is billed on based on whats used.
 - High Water mark - billed for most used
 - Storage which is freed up can be reused
-- Replicas can be added and romved without requiring storage provisioning
-- Auroa Cluster enpoint always points top the primary instance
-- Reader Endpoint will loadballance accross all replicias
+- Replicas can be added and removed without requiring storage provisioning
+- Aurora Cluster endpoint always points top the primary instance
+- Reader Endpoint will load ballance across all replicas
 - Custom Endpoints
 - No free tier.
 - Compute - hourly charge, per second 10 minute minimum.
 - Storage - GB-Month consumed, IO cost per request
 - 100% DB Size in backups are included
 - Backtrack can be used to rewind to a previous point in time
-- Fast clone make a new databse MUCH faster than copying all the data  copy-on-write
+- Fast clone make a new database MUCH faster than copying all the data copy-on-write
  
 ## Aurora Serverless
  
@@ -859,21 +858,21 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Aurora Serverless cluster has a MIN and MAX ACU
 - Cluster Adjusts based on load
 - Can go to 0 and be paused
-- Consumpton billing per-second basis
-- Same reslience as Aurira (6 copies across AZs)
+- Consumption billing per-second basis
+- Same resilience as Aurora (6 copies across AZs)
 - Infrequently used applications as you consume
 - New applications
 - Variable workloads
-- Unpredicatble workloads
+- Unpredictable workloads
 - Development and test databases
-- Multi-tentant applications
+- Multi-tenant applications
  
 ## Aurora Global Database
  
 - Cross-Region DR and BC
 - Global Read Scaling low latency performance improvements
 - ~1s or less replication between regions
-- No Impact on  DB perfromance
+- No Impact on  DB performance
 - Secondary regions can have 16 replicas
  
 ## Aurora Multi Master
@@ -891,12 +890,10 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Source and Destination Endpoints point at the Source and Target Databases
 - One endpoint MUST be on AWS
 - Full Load Migration = (one off migration of all data)
-- Full Load + CDC (Change data capture) for on goging replication which captures changes
-- CDC Only (if you wnat to use an alternative method to transfer the bulk data .. such as native tooling)
+- Full Load + CDC (Change data capture) for on going replication which captures changes
+- CDC Only (if you want to use an alternative method to transfer the bulk data .. such as native tooling)
 - SCT Schema Conversion Tool
 - No downtime = DMS
-
-
 
 ## EFS
  
@@ -908,31 +905,29 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Linux only instances
 - General Purpose and max IO Performance Modes
 - General Purpose = default for 99% of uses
-- Bursting and Provisoned Throughput Modes
+- Bursting and Provisioned Throughput Modes
 - Storage Classes Standard and IA Classes
 - Standard is the default
 - Life cycle polices can be used with classes
 
-
-
 ## ALB
  
 - ALB is layer 7 LB understands HTTP/S
-- Scalable and highly-avalable
+- Scalable and highly available
 - Target group is just a collection of targets
 - Internet facing or Internal
 - Listens on the outside < Sends to target Groups
-- Houly rate and LCU Rate (Capacity)
+- Hourly rate and LCU Rate (Capacity)
 - Targets = Target Groups which are addressed via rules
 - Rules are path based or host based.
-- Supports EC2mECS EKS Lambda, HTTPS, HTTP/2 and websockets
+- Supports EC2mECS EKS Lambda, HTTPS, HTTP/2 and web sockets
 - ALB can use SNI for multiple SSL Certs - host based rules
-- Only use clasic load balancers for legacy
+- Only use classic load balancers for legacy
  
 ## Launch Configurations
  
-- Allows you to define teh configuartion of an EC2 instance in advance
-- AMI, Instance Type,Stoarge & key Pair
+- Allows you to define teh configuration of an EC2 instance in advance
+- AMI, Instance Type, Storage & key Pair
 - Networking & Storage groups
 - Userdata & IAM Role
 - Both are NOT editable - defined once LT has versions
@@ -940,27 +935,25 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
  
 ## Auto Scaling Groups
  
-- Automatic scaliing and Self Healing for EC2
+- Automatic scaling and Self Healing for EC2
 - Uses Launch Templates or Configurations
-- Has a Minimum, Disired and Maximum Size e.g (1:2:4)
-- Provison or Terminate Instances to keep at the desired level(between min/max)
-- Scaling Polcies are rules
-    - Manual Scaling - Maunally adjust the desired capacity
+- Has a Minimum, Desired and Maximum Size e.g (1:2:4)
+- Provision or Terminate Instances to keep at the desired level(between min/max)
+- Scaling Policies are rules
+    - Manual Scaling - Manually adjust the desired capacity
     - Scheduled Scaling - Time based adjustment 
     - Dynamic Scaling
      - Simple - Define a rule based on a metric ("CPU above 50% +1) (CPU below 50-1)
-     - Stepped Scaling - Bigger +/- based on diffrence
+     - Stepped Scaling - Bigger +/- based on difference
      - Target Tracking - Desired Aggregate CPU = 40% .. ASG handle it
-- Cooldown Periods
+- Cool down Periods
 - Self Healing
 - load balancers
 - Autoscaling groups are free
-- Use calldown periods to avoid rapid scaling
-- Think about smaller instances - granualarity
-- USe with ALBs for elasticity - abrasction
+- Use cool down periods to avoid rapid scaling
+- Think about smaller instances - granularity
+- USe with ALBs for elasticity - abstraction
 - ASG defines WHEN and WHERE, LT defines WHAT
-
-
 
 ## NLB
  
@@ -969,32 +962,30 @@ to the local DB User IAM is NOT Used to authorise, only for authentication.
 - Rapid scaling  - millions of requests per second
 - 1 interface w/ static IP per AZ and use Elastic IP (whitelisting)
 Can do SSL Pass through
-- Can load balance non HTTPS appliactions -doesn't are about anything above TCP/UDP
+- Can load balance non HTTPS applications -doesn't are about anything above TCP/UDP
  -
 ## SSL Offload & Session Stickiness
 - Bridging
-  - Listener is configured for HTTPS Connection is terminiated
-  on ELB & certicate is needed for the domain name
-  - ELB Iniates a new SSL instances need SSL certifcates and the compute required for cryptographic operations
-- Passthough
-  - Listener is configiured for TCP, NO encryption or decryption happends on NLB connection is passed to backend instance
-  - The client connects Each instance needs appropiate SSL cert install With this architecture there is no certificate exposeure to AWS all self managed and secure, the LB doesn't need certcates installed as it does with bridging 
+  - Listener is configured for HTTPS Connection is terminated 
+  on ELB & certificate is needed for the domain name
+  - ELB Initiates a new SSL instances need SSL certificates and the compute required for cryptographic operations
+- Passthrough
+  - Listener is configured for TCP, NO encryption or decryption happens on NLB connection is passed to backend instance
+  - The client connects Each instance needs appropriate SSL cert install With this architecture there is no certificate exposure to AWS all self managed and secure, the LB doesn't need certificates installed as it does with bridging 
  
 - Offload
   - Listener is configured for HTTPS connections are terminated and then backend connections use HTTP
-  - ELB to the connections use HTTP no certifacte ir cryptographoc operations
+  - ELB to the connections use HTTP no certificates ir cryptographic operations
 
 ## Connection Stickiness
   - AWSALB Cookie 1s to 7 days
-  - Server Failour or cookie expries 
+  - Server Failover or cookie expires 
   - Uneven load on backend server.
-
-
 
 ## Event Driven Architecture
 
 ### Lambda
-- Functiom as a service FaaS
+- Function as a service FaaS
 - Event driven invocation ( execution)
 - Lambda function = piece of code in one language
 - Lambda functions use a runtime ( e.g Python 3.6)
@@ -1002,41 +993,37 @@ Can do SSL Pass through
 - execution role
 - 15min execution limit
 - new run time every execution
-- Load data from other services such as s3 dynamoDB no persitant
-- Lamaba comes under free tier 1Gb memory 1 million executions per month
+- Load data from other services such as s3 dynamoDB no persistent
+- Lambda comes under free tier 1Gb memory 1 million executions per month
 
 ### Cloud watch events and Events Bridge
 
 - if X happens or at Y times do Z
 - EventBridge is .... Cloudwatch Events
 - a default Event bus for the account
-- In cloudWatch Events this the only bus(implict)
+- In cloudWatch Events this the only bus(implicit)
 - EventBridge can have additional event busses
 - Rules match incoming events .. (or schedules)
 
 ## API Gateway 
 
 - API Gateway is a managed service from AWS which allows the creation of API Endpoints, Resources & Methods.
-
 - Create, Publish, Monitor and Secure APIs as a Service
-
 - The API gateway integrates with other AWS services - and can even access some without the need for dedicated compute
-
 - It serves as a core component of many serverless architectures using Lambda as event-driven and on-demand backing for methods.
+- It can also connect to legacy monolithic applications and act as a stable API endpoint during an evolution from a monolith to micro services and potentially through to serverless.
 
-- It can also connect to legacy monolithic applications and act as a stable API endpoint during an evolution from a monolith to microservices and potentially through to serverless.
+- Billed based on Number of API Calls, Data Transfer and additional performance features such as caching
 
-- Billed based on Number of API Calls, Data Transfer and addtional performance features susch as caching
-
-- Can be used for server archeture
+- Can be used for server architecture
 
 ## Serverless architecture 
 
 - Serverless isn't one single thing
 - You manage few if any servers - low overhead
-- Applications are a collection of small & specialised functions
-- ..Stateless and Ephermal enviorments - durantion biling
-- Event driven ..comsuption only when being used
+- Applications are a collection of small & specialized functions
+- ..Stateless and Ephemeral environments - duration billing
+- Event driven ..consumption only when being used
 - FaaS is used where possible for compute functionality
 - Managed services are used where possible  
 
@@ -1046,53 +1033,47 @@ Can do SSL Pass through
 traditional application architectures.
 
 - Public AWS Zone
-
 - Delivery Status (Http,Lambda,SQS)
-- Delivery Retries - Reliable Delvery
+- Delivery Retries - Reliable Delivery
 - HA and Scalable (Region)
 - Server Side Encryption SSE
 - Cross-Account via <ins>TOPIC Policy</ins>
 
 - Messages are <= 256 payloads
-
-- SNS Topics are based  on entity of SNS permissons and configuration
-
+- SNS Topics are based  on entity of SNS permissions and configuration
 - Publishers send messages to TOPICS
-
 - Subscribers receive messages SENT to TOPICS. e.g (HTTPs), Email)-JSON,SQS Mobile Push, SNS Messages and Lambda
-
 - SNS supports a wide variety of subscriber types including other AWS services such as LAMBDA and SQS
 
 ## Step Functions
 
 - Step functions is a product which lets you build long running serverless workflow based applications within AWS which integrate with many AWS services.
-
 - States and things which occur
 - Maximum Duration 1 year 
 - Standard Workflow and Express workflow 5 mins
-- Started cia API Gateway, IOT Rules,EventBridge, Lamabda
-- Amazon States (ALS) - JSON Temlate
-- IAM Role is used for permisions
+- Started cia API Gateway, IOT Rules,EventBridge, Lambda
+- Amazon States (ALS) - JSON Template
+- IAM Role is used for permissions
 - State machines are long running serverless workflows
 
 ### States
 
 - SUCCEED and FAIL
-- WAIT (Wait for point in time or bassed on date)
+- WAIT (Wait for point in time or based on date)
 - CHOICE (Condition)
-- PARALLEL (Do somthing passed from CHOICE)
+- PARALLEL (Do something passed from CHOICE)
 - MAP (List of Things, Orders)
-- TASK (Single unit of work perfomed by a state machine)
+- TASK (Single unit of work performed by a state machine)
 
 ## SQS 
 
-- Public, Fully Managed, Highy-Avaiable Queues - Standard or FIFO
+- Public, Fully Managed, Highly-Available Queues - Standard or FIFO
 - FIFO Guarantee an order
 - Standard queue best efforts
 - Messages up to 256Kb in size link to large data
-- Received messages are hidden <ins>(VisibilityTimeout)</ins> hidden for ammount of time then reppears (retry) or are explicitly deleted.
+- Received messages are hidden <ins>(VisibilityTimeout)</ins> hidden for amount of time then reappears (retry) or are explicitly deleted.
 - Dead-Letter queues can be used for problem messages (5 or more times)
-- ASGs can scale and Lambdas inovle based on queue length
+- ASGs can scale and Lambdas involve based on queue length
 
 - Worker Pool. 
 - Web Pool 
@@ -1103,36 +1084,36 @@ traditional application architectures.
 - 1 request = 1-10 messages up 258kb total 
 - Short (immediate) va Long(waitTimeSeconds)Polling
 - Long polling uses fewer requests
-- Encrypton at rest (KMS) & in-transit
-- Indentity Policy or Queue Policy
+- Encryption at rest (KMS) & in-transit
+- Identity Policy or Queue Policy
 
 ## Kinesis & Kinesis Firehose
 
 - Kinesis data streams are a streaming service within AWS designed to ingest large quantities of data and allow access to that data for consumers
 - Producers send data into kinesis stream
-- Streams can scales from low to near infinte data rates
+- Streams can scales from low to near infinite data rates
 - Kinesis is ideal for dashboards and large scale real time analytics needs.
-- Public Service & hihly avalible
+- Public Service & highly available
 - Streams store a 24-hour moving window of data
 - Kinesis data firehose allows the long term persistent storage of kinesis data onto services like S3
 - Producers > Kinesis Stream > Consumers
 - As Single Kinesis stream adds shards
 - 1Mb Ingestion , 2Mb Consumption
-- 24hr roling window can be increased to 7 day for addtional cost
+- 24hr rolling window can be increased to 7 day for additional cost
 - Kinesis data Record (1Mb)
-- SQS vs Kinesis injestion of data = Kinesis
+- SQS vs Kinesis ingestion of data = Kinesis
 - Streaming data
 - Worker pool, decouple, Asynchronous communications = SQS
-- Kinesis designed for huge scale injestion
-- Data ingestion, Analytics, Montoring, App Clicks
+- Kinesis designed for huge scale ingestion
+- Data ingestion, Analytics, Monitoring, App Clicks
 
 ## Amazon Cognito - User and Identity Pools
 
-- Authenication, Authorization and user management for web/mobile apps
+- Authentication, Authorization and user management for web/mobile apps
 - USER POOLS - Sign-in and get a JSON Web Token JWT
-- IDENTITIY POOLS - Allow you to offer access to Temporary AWS Credentials
-- Web Indentity Federation = userpool = identity pool
-- Federated Indetities SWAP - Google, Facebook, Twitter, SAML2.0 & user Pool for short term AWS Credentials to access AWS Resources
+- IDENTITY POOLS - Allow you to offer access to Temporary AWS Credentials
+- Web Identity Federation = user pool = identity pool
+- Federated Identities SWAP - Google, Facebook, Twitter, SAML2.0 & user Pool for short term AWS Credentials to access AWS Resources
 
 - A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito. Your users can also sign in through social identity providers like Google, Facebook, Amazon, or Apple, and through SAML identity providers. Whether your users sign in directly or through a third party, all members of the user pool have a directory profile that you can access through a Software Development Kit (SDK).
 
@@ -1140,8 +1121,8 @@ traditional application architectures.
 
 ## CloudFront Architecture Basics
 
-- Cloud Front is a global oject cache (CDN)
-- Content is cached in loaions close to customers
+- Cloud Front is a global object cache (CDN)
+- Content is cached in locations close to customers
 - Lower latency and higher throughput
 - Load on the content server is decreased 
 - it can handle static and dynamic content
@@ -1155,7 +1136,7 @@ traditional application architectures.
 <ins>Terms</ins>
 
 - Origin - The source location of your content
-- Distribution - The configuraton unit of Cloudfront
+- Distribution - The configuration unit of Cloudfront
 - Edge Location - Local infrastructure which hosts cache of your data
 - Regional Edge Cache - Larger version of edge location. Provides another layer of caching.
 
@@ -1164,16 +1145,15 @@ traditional application architectures.
 - HTTP - Simple and Insecure
 - HTTPS - SSL/TLS Layer of Encryption added to HTTP
 - Data is encrypted in transit
-- Cetificates prove identity
+- Certificates prove identity
 - Signed by a trusted authority CA
-- Create, renew and deploy certifcates with ACM
+- Create, renew and deploy certificates with ACM
 - Supported AWS Services ONLY (e.g Cloudfront and ALBs .. NOT EC2)
-- Cloudfront if communicatiny with edge and orgin with https it needs to use a trusted signed certificate
+- Cloudfront communicates with edge and origin with https it needs to use a trusted signed certificate
 
 ## Securing CF and S3 using OAI
 
 - Origin Access Identities are a feature where virtual identities can be created, associated with a CloudFront Distribution and deployed to edge locations.
-
 - Access to an s3 bucket can be controlled by using these OAI's - allowing access from an OAI, and using an implicit DENY for everything else.
 
 ## Lambda@Edge
@@ -1187,7 +1167,7 @@ traditional application architectures.
 
 - Connect between  Customer end edge location known as <ins>viewer request</ins> 
 - Edge location and origin known as  <ins>Origin Request</ins>
-- Origin and cloudfron edge known as <ins>Origin Response</ins>
+- Origin and cloudfront edge known as <ins>Origin Response</ins>
 - Connection between the edge location and the customer known as <ins>Viewer response</ins>
 
 - Limit 1028 Mb 5 Seconds timeout (Viewer Request - Viewer Response)
@@ -1204,12 +1184,12 @@ traditional application architectures.
 
 ## Global Accelerator
 
-- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using ANycast IP addresses
+- AWS Global Accelerator is designed to improve global network performance by offering entry point onto the global AWS transit network as close to customers as possible using Any cast IP addresses
 - Moves the AWS Network closer to customers
-- Connections enter at edge user anycast IPs
+- Connections enter at edge user any cast IPs
 - Transit over AWS backbone 1+ locations
-- Can be used for NON HTTP/s (TCP/UDP) **Diffrence from cloudFront
-- Global Performance , doesn't cache its a network product Transisting network data.
+- Can be used for NON HTTP/s (TCP/UDP) **Difference from cloudFront
+- Global Performance , doesn't cache its a network product Transacting network data.
 
 ## VPC FLow Logs
 
@@ -1254,7 +1234,7 @@ traditional application architectures.
 - Provide private access to S3 and DynamoDB
 - Per service per region
 - Prefix List added to route table => Gateway Endpoint
-- Highly Avaible (HA across all AZs in region by default)
+- Highly available (HA across all AZs in region by default)
 - Endpoint policy is used to control what it can access
 - Regional .. can't access cross-region services
 - Prevent Leak Buckets - S3 Bucket can be set to private only
@@ -1263,11 +1243,11 @@ by allowing access ONLY from a gateway endpoint.
 
 ## VPC Endpoints (Interface)
 
-- Inteface enpoints are not Highly avalable
-- Added to specfic an ENI not HA
+- Interface endpoints are not Highly available
+- Added to specific an ENI not HA
 - For HA add one endpoint to one subnet, per AZ used in VPC
 - Network access controlled via Security Groups
-- Endpoint policies - rescirct what can be done with endpoint
+- Endpoint policies - restrict what can be done with endpoint
 - TCP and IPv4 ONLY
 - Uses PrivateLink
 - Interface endpoints use DNS
@@ -1283,11 +1263,11 @@ by allowing access ONLY from a gateway endpoint.
 
 - Direct encrypted network link between two VPCs
 - Works same/cross-region and same/cross-account
-- (optional Public Hostnames reslove to private IPs
+- (optional Public Host names resolve to private IPs
 - Same region SGs can reference peer SGs
-- VPC Peering does NOT support transtive peering
+- VPC Peering does NOT support transactive peering
 - Routing Configuration is needed, SGs & NACLs can filter
-- Routing tables at both sides of teh peering connection are needed, directing the flow for the remote CIDR at perr gateway object
+- Routing tables at both sides of teh peering connection are needed, directing the flow for the remote CIDR at per gateway object
 - VPC Peering connections cannot by created where there is overlap in the VPC CIDRS Ideally NEVER use the same address ranges in multiple VPcs.
 - NO VPC Peer between A and C doesn't work,peering is not Transtive
 
