@@ -38,7 +38,7 @@ Service Accounts
 - Iam user can be a member of up to 10 groups
 - IAM Roles and Identity Federation fix for above 
  
-AWS Well-Architected Framework, Cost Optimization
+AWS The Well Architected Framework, Cost Optimization
  
 ### <ins>DENY ALLOW DENY</ins>
  
@@ -65,15 +65,15 @@ Trust Policy  - Lambda - Permissions Policy
 Cross Account Access
 
 
-## <ins>AWS Organisations</ins>
+## <ins>AWS Organizations</ins>
  
-- Standard AWS Account you create AWS Organisation ( Management Account) Master Account
+- Standard AWS Account you create AWS Organization ( Management Account) Master Account
 - Invite other existing standard AWS Accounts, they. Need approve invite they become (Member Accounts)
-- Organisational Root , container can contain, OUs 
-- Consolidated Billing , meter accounts pass there billing to Management Account of the organisation Payer account, 
+- Organizational Root , container can contain, OUs 
+- Consolidated Billing , meter accounts pass there billing to Management Account of the organization Payer account, 
 - Consolidation of reservations and volume discounts
 - SCP Service Control Policy
-- Create new accounts within organisations, there isn’t an invite process.
+- Create new accounts within organizations, there isn’t an invite process.
 - Role switch 
 - OrganizationAccountAccessRole
  
@@ -99,7 +99,7 @@ Cross Account Access
  
 - Logs API Instances
 - Cloud trail stores the last 90day of events in Event History, Enabled by default at no cost
-- To customise the service .. Create 1 or more trails
+- To customize the service .. Create 1 or more trails
 - Management Events and Data Events
 - Management events Control Plane operations
 - Data events not logged at default
@@ -107,7 +107,7 @@ Cross Account Access
 - All Region Trail and its got Global services turned on
 - A trail can store event in a definable s3 bucket, logs can be stored indefinitely
 - Cloud trail and put data into s3 or cloud watch logs, metric filter.
-- Organisational Trail. Managing Muti account easier
+- Organizational Trail. Managing Multi account easier
  
 Management events, Data events, Insights events
  
@@ -143,7 +143,7 @@ ID = 0 when object versioning is disabled.
 - S3 always picks the latest version when object versioning is switched on
 - When an object is deleted with object versioning switched on S3 adds a delete marker object, unless the list versions is switched on you will not see this.
  
-### S3 Performance Opitimization
+### S3 Performance Optimization
  
 - Single data stream to s3 - stream fails upload fails - Requires full restart
 - Single put upload is <ins>5GB of data</ins>
@@ -189,11 +189,11 @@ Once created created endpoint, uses edge network
 ### S3 Encryption
  
 - Buckets aren’t encrypted objects are
-- Clientside encryption
-- Severside encryption
+- Client-side encryption
+- Sever-side encryption
 - Header to enable s3 encryption x-amz-server-side-encryption
     - <ins>AES256 -s3 -SSE-S3 (cmk provided by aws)</ins>
-    - <ins>Aws:kms -s3 KMS (fine grained keycontrol)</ins>
+    - <ins>Aws:kms -s3 KMS (fine grained key control)</ins>
     - <ins>Default = Bucket Default</ins>
  
 ## <ins>S3 Storage Classes</ins>
@@ -218,9 +218,9 @@ Once created created endpoint, uses edge network
  
 - Cost effective 1.5th of the cost of s3 standard
 - Objects stored in the glacier class are cold objects, and they aren't ready for use.
-- to get access to glacier objects you need to perfrom a retrieval process, you pay for the retriveal process 
+- to get access to glacier objects you need to perform a retrieval process, you pay for the retrieval process 
 - Glacier has a first byte latency  = minutes or hours 
-- Glacier Retrival Types: 
+- Glacier Retrieval Types: 
     - <ins>Expedited (1 - 5 mins)</ins>
     - <ins>Standard (3 - 5 hours)</ins>
     - <ins>Bulk (5 - 12 hours)</ins>
@@ -233,7 +233,7 @@ The faster the more expensive
 - Cheaper than Glacier
 - Data in Frozen State
 - Objects stored in the glacier class are cold objects, and they aren't ready for use
-- Glacier Deep Archive Retrival Types:
+- Glacier Deep Archive Retrieval Types:
     - <ins>Standard (12 hours)</ins>
     - <ins>Bulk (48 Hours)</ins>
 First byte latency = hours or days
@@ -250,40 +250,40 @@ First byte latency = hours or days
 - The Infrequent Access tier costs the same as Standard-IA
  
 - Frequent Access  
-- after <ins>30 days</ins> if not accesed the object will be moved to the Infrequent Access tier.
+- after <ins>30 days</ins> if not accessed the object will be moved to the Infrequent Access tier.
     - Infrequent Access
      - Archive
        - Deep Archive
  
-- S3 Intelligent Tiering shoud be used for long-lived data with changing or unknown data patterns
+- S3 Intelligent Tiering should be used for long-lived data with changing or unknown data patterns
  
 ### S3 Lifecycle Configuration
  
 - S3 Lifecycle is a set of rules that you apply to a bucket. Rules can apply to buckets or groups of objects
 - Limit the scope of the lifecycle rule to specific prefixes and tags
 - Transition Actions ( Move from one tier to another ) <ins>(current and previous versions)</ins>
-- Expiration Actions ( Delete whatever objects need to deleted in a cetain time ) can be used as cost optimization )
+- Expiration Actions ( Delete whatever objects need to deleted in a certain time ) can be used as cost optimization )
 - Transition smaller objects can cost more (minium size)
-- <ins>30 day minium</ins> where an object need to stay on s3 standard before tranisition to lower storage tiers
+- <ins>30 day minium</ins> where an object need to stay on s3 standard before transition to lower storage tiers
 - A single rule cannot transition to Standard-IA or OneZone-IA then to either glacier type within <ins>30 days</ins>
  
 ### S3 Replication
  
-- <ins>Cross-Region Replication (CRR) </ins>Allows the replication from the source bucket to destination bucket in diffrent aws regions
+- <ins>Cross-Region Replication (CRR) </ins>Allows the replication from the source bucket to destination bucket in different aws regions
 - <ins>Same-Region Replication (SRR) </ins>Allows the replication from source to destination in the same AWS regions
 - Replication application is applied from the <ins>source bucket</ins>
 - IAM role defined on source bucket, and is used to allow access to destination bucket
 - You can replicate all objects or a subset of objects, by creating a <ins>rule filter</ins>
 - You can also select which storage class the destination will use , <ins>default to use the same as source</ins>
-- You can akso define the ownership, <ins>the default is the source account</ins>
+- You can also define the ownership, <ins>the default is the source account</ins>
 - Replication Time Control (RTC) adds a <ins>15min</ins> SLA onto time it takes to sync.
  
-- Replication is nor retoactive & versioning needs to be on.
-- if you enable replication on a bucket that already has objects in it, the objects that were in the bucket before you switched on replicaton will not bereplicated.
+- Replication is nor retroactive & versioning needs to be on.
+- if you enable replication on a bucket that already has objects in it, the objects that were in the bucket before you switched on replication will not be replicated.
 - <ins>Both the source and destination bucket needs to have versioning enabled, it is a requirement</ins>.
-- One-way replicaton only <ins>SOURCE > DESTINATION</ins>.
-- Replication is able to handle objects that are Uncrypted, SSE-S3 & SSE-KMS (with extra config) NOT SSE-C as S3 replication is not in control of the keys
-- Source bucket owner needs permisions to objects
+- One-way replication only <ins>SOURCE > DESTINATION</ins>.
+- Replication is able to handle objects that are Un-encrypted, SSE-S3 & SSE-KMS (with extra config) NOT SSE-C as S3 replication is not in control of the keys
+- Source bucket owner needs permissions to objects
 - NO system events, glacier or glacier deep archive can't be replicated.
 - Deletes are not replicated. (Unless Selected)
  
@@ -291,21 +291,21 @@ First byte latency = hours or days
  
 - SRR - Log Aggregation
 - SRR - Prod and Test Sync
-- SRR - Resilince with strict sovereignty
-- CRR - Global Resilience Improvments (backups in differnt regions)
-- CRR - Latency Reduction ( Better Perfromance )
+- SRR - Resilience with strict sovereignty
+- CRR - Global Resilience Improvements (backups in different regions)
+- CRR - Latency Reduction ( Better Performance )
  
 ### S3 Presigned URLs
  
-- Presigned URLSs are a feature of s3 that allows the system to generate a URL with aceess permissions encoded into it, for a spefic bucket and object
-- It is only valid for a certian period of time.
-- It uses the creators acces rights as an identity to access the bucket and objects.
+- Presigned URLSs are a feature of s3 that allows the system to generate a URL with access permissions encoded into it, for a specific bucket and object
+- It is only valid for a certain period of time.
+- It uses the creators access rights as an identity to access the bucket and objects.
  
 - You can create a presigned URL for an object you have no access to.
-- When using the URL, the permissons match the identity which generated it.
-- Access deined could mean that the generating ID never had access or its time has expired.
+- When using the URL, the permissions match the identity which generated it.
+- Access denied could mean that the generating ID never had access or its time has expired.
 - Don't generate a presigned url with a role, URL stops working when temporary credentials expire.
-- Presigned url is linked to the identy that generated it.
+- Presigned url is linked to the identity that generated it.
 - Can create a presigned url for an object that doesn't exist.
  
 ```bash
@@ -314,9 +314,9 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### S3 Select and Glacier Select
  
-- S3 Select and Glacier Select are ways where you can retirive parts of objects. rather than the entire object.
+- S3 Select and Glacier Select are ways where you can retrieve parts of objects. rather than the entire object.
 - S3/Glacier allows you to select partial objects using SQL like statements.
-- To select parts of the oject, pre-filtered by S3.
+- To select parts of the object, pre-filtered by S3.
 - allow the following file formats.
     - CSV
     - JSON
@@ -327,12 +327,12 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### S3 Events
  
-- When enabled a Notifcation is generated when events occur in a bucket
-- The notifcations trigger and can deiver to SNS, SQS and Lambda functions.
-- Event Driven Processees, automated work flow.
+- When enabled a Notification is generated when events occur in a bucket
+- The notifications trigger and can deliver to SNS, SQS and Lambda functions.
+- Event Driven Processes, automated work flow.
 - Objects created (Put, Post, Copy, CompleteMultiPartUpload) complete.
 - Object restore, notify when a restore starts or ends.
-- Create S3 bucket - <ins>define a Event Notfication config.</ins>
+- Create S3 bucket - <ins>define a Event Notification config.</ins>
 - Event Bridge
  
 ### S3 Access Logs
@@ -344,19 +344,19 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 
 ## Networking
  
-- VPC minimum /28 (16IP), maxium /16 (65456 IPs)
+- VPC minimum /28 (16IP), maximum /16 (65456 IPs)
 - VPC Sizing 
  
 ### NACLS
  
-- <ins>Stateless</ins> - INIATION and RESPONSE seen as diffrent
+- <ins>Stateless</ins> - INIATION and RESPONSE seen as different
 - Only Impacts data crossing subnet border
 - Can EXPLICITLY ALLOW and DENY
-- IPs/Networks, Ports & Protocols - no logcal resources
+- IPs/Networks, Ports & Protocols - no logical resources
 - NACLS cannot be assigned to AWS only subnets
 - Use with Security Groups to add explicit DENY (Bad IPs/Nets)
 - One Subnet = One NACL at a time
-- Lower rule number will allways be processed first
+- Lower rule number will always be processed first
  
 ### Security Groups
  
@@ -379,9 +379,9 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 ## EC2
  
 - EC2 Architecture (AZ Reslient Hardware)
-- Relies on AZ Avalibity Zone. EC2 EBS Avalibity Zone cannot cross region or AZ
+- Relies on AZ Availability Zone. EC2 EBS Availability Zone cannot cross region or AZ
 - Whats ec2 good for ?
-    - Traditional OS+Applicaton Compute
+    - Traditional OS+Application Compute
     - Long-Running Compute needs
     - Server style applications
     - either burst or steady-state load
@@ -392,10 +392,10 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 - General Purpose 
     - Compute Optimized <ins>Default</ins> Diverse workloads, equal resource ratio
-    - Memory Optimmized Processing large in memeory datasets some databas workloads
+    - Memory Optimized Processing large in memory datasets some database workloads
     - Accelerated Computing Hardware GPU
-    - Storage Optimiized - Sequenital and Random IO -scale-out transactional datdabasesm Elastic search, analytics workloads
-    - EC2Intance.info website.
+    - Storage Optimized - Sequential and Random IO -scale-out transactional databases Elastic search, analytics workloads
+    - EC2Instance.info website.
     - ec2 instance connect
     - https://ip-ranges.amazonaws.com/ip-ranges.json
     - instance connect cli tool to connect with private address, web is only public instances.
@@ -404,9 +404,9 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 - Direct (local) attached Storage on EC2 host
 - Network Volumes delivered over the network (EBS)
-- Ephermeral Storage - Temporary Storage
+- Ephemeral Storage - Temporary Storage
 - Persistent Permanent storage lives on past the lifetime of the instance
-- IO Block size x iops = thoughput
+- IO Block size x IOPS = throughput
  
 ### EBS
  
@@ -667,9 +667,6 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - More Bandwidth
 - Higher packets per second
 - Consistent lower latency
-
-
-
 
 ## Route 53
  
