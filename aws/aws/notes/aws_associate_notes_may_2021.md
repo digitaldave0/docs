@@ -378,7 +378,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 
 ## EC2
  
-- EC2 Architecture (AZ Reslient Hardware)
+- EC2 Architecture (AZ Resilient Hardware)
 - Relies on AZ Availability Zone. EC2 EBS Availability Zone cannot cross region or AZ
 - Whats ec2 good for ?
     - Traditional OS+Application Compute
@@ -411,8 +411,8 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 ### EBS
  
 - block storage - rwa disk allocations (volume) - can be encrypted using KMS
-- instance see block device and create fiel system on device (ext3/4, xfs)
-- storage is provisoned in <ins>ONE AZ</ins> (reslisent in that AZ)
+- instance see block device and create file system on device (ext3/4, xfs)
+- storage is provisioned in <ins>ONE AZ</ins> (resilient in that AZ)
 - attached to one instance at a time.
 - detached and reattached, not lifecycle linked to one instance .. persistent
 - snapshot (backup) into S3. Create volume from snapshot to (migrate between AZs)
@@ -429,14 +429,14 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 ### Instance store vs EBS
  
 - Persistance EBS (avoid instance store)
-- Reslience EBS (avoid instance store)
+- Resilience EBS (avoid instance store)
 - Storage isolated from instance lifecycle EBS
 - Super high performance needs instance store
 - Cost Instance store
  
 - Cheap = ST1 or SC1
 - Throughput .. Streaming ST1
-- Boot not ST1 or SC1 Mechnical disk use as boot volumes
+- Boot not ST1 or SC1 Mechanical disk use as boot volumes
 - GP2/3 up to 16,000 IOPs
 - IO1/2 up to 64,0000 IOPS (*256,000) io/block express
 - RAID 0 + EBS up to 2600,000 IOPS (io1/2-BE/GP2/3)
@@ -463,11 +463,11 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 ### Network Interfaces Instance IPs and DNS
  
 - Secondary ENI + MAC = Licensing
-- Multi-homed (subnets) Managment & data
+- Multi-homed (subnets) Management & data
 - Security groups are attached to interfaces ENI's
 - OS doesn't see the public IPv4
 - IPv4 Public IPs are Dynamic Stop & Start = Change
-- Public DNS = Provate IP in VPC, public IP everywhere else
+- Public DNS = Private IP in VPC, public IP everywhere else
  
 ### AMIs
  
@@ -483,8 +483,8 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
     - Launch
 - AMI snapshots are taken using block device mapping
 - AMIs can not be edited
-- AMIs can be copied accross aws regions
-- AMIs does use EBS snapshots and can incure costs
+- AMIs can be copied across aws regions
+- AMIs does use EBS snapshots and can incur costs
  
 ### Billing Pricing Models
  
@@ -495,18 +495,18 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 <u>On-demand</u>
  
-- Instances have an houly rate and you use the instance
-- Billedin seconds (60s minimum) of hourly rate
-- Defualt Pricing Model
-- No lonf term commitments or up from payments
-- New or uncertain apppliction requirements
+- Instances have an hourly rate and you use the instance
+- Billed in seconds (60s minimum) of hourly rate
+- Default Pricing Model
+- No long term commitments or up from payments
+- New or uncertain application requirements
 - Short term, spiky or unpredictable workloads that can;t tolerate any disruption
  
 <u>Spot</u>
  
 - A spot price is set by EC2 - based on spare capacity
-- You can specity a maximum price you'll pay
-- If the spot price goes above your set maximumprice your instaces will be terminated
+- You can specify a maximum price you'll pay
+- If the spot price goes above your set maximum price your instances will be terminated
 - Applications that have flexible start and end times
 - Apps which can <ins>tolerate failure</ins> and continue later
  
@@ -522,7 +522,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ### Instance Status Checks & Auto Recovery
  
-- System reachbility check
+- System reachability check
     - Loss of Power
     - Loss of network Connectivity
     - Host software issues
@@ -533,7 +533,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
     - Incorrect Instance Networking
     - OS Kernel Issues
  
-- Use autorecovery if failed. (only works with EBS not Instance store volumes)
+- Use auto recovery if failed. (only works with EBS not Instance store volumes)
 - remember disableApiTermination
 
  
@@ -543,16 +543,16 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 <u>Vertical Scaling</u>
  
 - each resize requires a reboot - disruption
-- Larger instances offen carry a premium cost
+- Larger instances often carry a premium cost
 - There is an upper cap on performance - instance size
-- No application modifcation required.
+- No application modification required.
  
-<u>Horizontal Scalling</u>
+<u>Horizontal Scaling</u>
  
-- Load Balanacer distrbutes load accross instances
+- Load Balancer distributes load across instances
 - Sessions
-- requires aplicaton support or off-host sessions. peresisnce databases
-- No disruption when scalling
+- requires application support or off-host sessions. persistance databases
+- No disruption when scaling
 - No real limits to scaling
 - Often less expensive
 - More granular
@@ -565,16 +565,16 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  - Authentication
  - User-Data
  
-- Not authenicated or encryted 
-- IPv4 public address not visabel within the operatiing system
+- Not authenticated or encrypted 
+- IPv4 public address not visible within the operating system
  
 ## Containers and ECS
  
-- EC2 mode EC2 instances as continer engines.
+- EC2 mode EC2 instances as container engines.
 - Fargate mode
-- Managed continer cluster
-- Container Defintion on where your image is and what port is exposed
-- Task Definition, applies to the appliocation - Security (Task Role),Containers,Resources
+- Managed container cluster
+- Container Definition on where your image is and what port is exposed
+- Task Definition, applies to the application - Security (Task Role),Containers,Resources
 - Task Role, is an IAM Role which the TASK assumes
 - Service Definition is how we define how we want a task to scale. (How many copies, HA, Restarts)
 - Create a Cluster then you deploy either tasks or services into that cluster
@@ -588,20 +588,20 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Small / Burst workloads - Fargate
 - Batch / Periodic workloads - Fargate
  
-### EC2 Bootstraping
+### EC2 Boot Strapping
  
-- Bootstraping allows EC2 Automation
+- Bootstrapping allows EC2 Automation
 - User Data - Accessed via the meta-data IP
 - <ins>http://169.254.169.254/latest/user-data</ins>
 - Anything in User Data is executed by the instance OS
 - <ins>Only on Launch</ins>
-- EC2 dosen't interpret the OS needs to understand the User Data
+- EC2 doesn't interpret the OS needs to understand the User Data
 - Userdata is limited to 16KB in size
 - Can be modified when stopped
 - Boot-Time-To-Service-Time 
 - check cloud-init-output.log to see use userdata set at boot time
  
-### Enhanced Bootstraping with CFN-INIT
+### Enhanced Boot Strapping with CFN-INIT
  
 - cfn-init helper script . Simple configuration management system
 - Procedural (User data) vs Desired State (cfn-init)
@@ -610,58 +610,58 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
  
 ## EC2 Instance Role 
  
-- IAM Role Permisons policy attached to it
+- IAM Role Permissions policy attached to it
 - Instance Profile
  
 ## SSM Parameter Store
  
 - Parameter store stores Strings, StringLists, Secure Strings
 - Changes to Parameter Store trigger events
-- Standard or Advanced upto 1000, Standard no cost
+- Standard or Advanced up to 1000, Standard no cost
 - aws ssm get-parameters --names
 - aws ssm get-parameters-by-path --path
 - aws ssm get-parameters-by-path --with-decryption
  
 ## Logging on EC2
  
-- Store cloudwatching logging config in SMM parameter Store
-- Incure a cost when using advanced.
+- Store cloud watch logging config in SMM parameter Store
+- Incur a cost when using advanced.
  
 ## EC2 Placement Groups
  
 - Cluster (PERFORMANCE) Pack instances close together
-    - Cluser placement groups belong to a single avalibility zone
+    - Cluster placement groups belong to a single availability zone
     - Run in the same Rack or sometimes the same host, all instances have direct connections to each other
     - Single stream 10Gbs per sec
-    - Cannont Span AZ only one AZ
+    - Cannot Span AZ only one AZ
     - Can span VPC Peers but impacts performance
-    - Requries a supported instance type
+    - Requires a supported instance type
     - Launch all instances at same time for cluster group, but not mandatory
  
-- Spread (Reslience) Keep instances seperated
+- Spread (Resilience) Keep instances separated
  - 7 instances per AZ
- - Provides the highest level of avability and resilience
- - Each instance is located on differnt rack, by default handled by AWS
+ - Provides the highest level of availability and resilience
+ - Each instance is located on different rack, by default handled by AWS
  
 - Partition (Topology Awareness) groups of instances spread apart
- - More than 7 intsnace per AZ
- - Multipul AZs with in Partition Group 7 per AZ per Region
- - Launch as many istance as you want into each partition.
- - You can decide, you control whoich partition your instances go into
+ - More than 7 instance per AZ
+ - Multiple AZs with in Partition Group 7 per AZ per Region
+ - Launch as many instance as you want into each partition.
+ - You can decide, you control which partition your instances go into
  - Large scale systems, groupings of each instance. HDFS, HBASE, Casandra, Large scale DBs
-- Not spported on Decidated Hosts
+- Not supported on Dedicated Hosts
  
 ## Dedicated Hosts
  
 - AMI Limits RHEL, SUSU Linux and Windows AMIs aren't supported
 - Amazon RDS instance are not supported
-- Placement Groups are not suppported for Dedicated Hosts.
+- Placement Groups are not supported for Dedicated Hosts.
 - Hosts can be shared with other Accounts using RAM.
-- Less flexaibility
+- Less flexibility
  
 ## Enhanced Networking and EBS Optimized
  
-- Uses SR-IOV - Nic is virtulization aware
+- Uses SR-IOV - Nic is virtualization aware
 - No Charge available on most EC2 Types
 - Higher I/O & Lower Host CPU Usage
 - More Bandwidth
@@ -674,7 +674,7 @@ aws s3 presign s3://mybucket/file.jpg  -expires-in 180
 - Accessible for the public internet & VPCs
 - Hosted on 4 R53 Name Servers NS specific for the zone
 - Resource Records (RR) created within the Hosted Zone
-- Externally registed domains can point at R53 Public Zone
+- Externally registered domains can point at R53 Public Zone
  
 ### Private hosted Zone
  
