@@ -1535,3 +1535,26 @@ required
 - Persistent has replication within ONE AZ only
     - Auto-heals when hardward failure occurs
     - you can backup to s3 with both (manual or automatic 0-35 days retention)
+
+## WAF 
+
+- Layer 7 (HTTP/s) Firewall
+- Protects against complex lapyer 7 attacks/exploits
+- SQL Injections, Cross-Site Scripting, Geo Blocks, Rate Awareness
+- WEBACL intregrated with ALB,API Gateway and Cloudfront
+- Rules are adedd to weback and evaulated when traffic arrives
+
+- DDos = Sheild (standard R53 Cloudfront)
+- Filtering = WAF
+
+## Cloud HSM
+
+- Single tentant hardware security modle
+- Fully FIPS 140-2 Level 3 (KMS is L2 Overall, some L3)
+- Inductry standrads APIs - PKCS#11, Java Cryptography, Extensions(JCE), Microsoft CryptoNG(CNG) libraries
+- KMS can use Cloud HSM as a custom key store, CloudHSM Integration with KMS
+- HSMs keep keys and policies in sync when nodes are added or rmoved
+- Cloud HSM client 
+    - EC2 -> ENi > HSM
+
+
