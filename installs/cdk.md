@@ -79,4 +79,6 @@ cdk bootstrap aws://<account>/eu-west-1
 > destroy tear down stack
 ```bash
 cdk destroy
+# deactivate venv
+deactivate
 ```
