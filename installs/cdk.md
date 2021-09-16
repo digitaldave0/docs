@@ -1,4 +1,4 @@
-# Install CDK Ubuntu
+# Install CDK on Ubuntu
 
 ## prerequisites
 
