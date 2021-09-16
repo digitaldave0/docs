@@ -157,7 +157,7 @@ git config --global user.email ""
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"
 ```
 
-## install awstools and golang dev with vscode integration
+## install awstools and golang dev with vscode
 
 ```
 sudo apt-get update

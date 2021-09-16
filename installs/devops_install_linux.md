@@ -1,6 +1,6 @@
 # Linux Devtools Setup
 
-## Add Upgrade to fedora 31
+> Add Upgrade to fedora 31
 
 ````bash
 sudo dnf upgrade --refresh \
@@ -10,13 +10,13 @@ sudo dnf system-upgrade reboot
 sudo dnf system-upgrade clean
 ````
 
-## Install fusion repo.
+> Install fusion repo.
 
 ````bash
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 ````
 
-### Install VS Code
+> Install VS Code
 
 ````bash 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -25,31 +25,7 @@ dnf check-update
 sudo dnf install code
 ````
 
-## Install Python 3.7 
-
-````bash
-sudo dnf install python37
-````
-
-enable venv for python
-
-````bash
-python3.7 -m venv venv
-. venv/bin/activate
-(venv) $ python --version
-````
-
-
-create venv for python projects
-
-````code
- python3 -m venv python-projects
- source python_projects/bin/activate
- ````
-
-
-
-## Incremental backup projects folder  
+> Incremental backup projects folder  
 
 Create Local Backup job for Projects 
 
@@ -80,13 +56,12 @@ for t in projects_2011-10-2*.tar.gz; \
 
 ````
 
-## copy ssh key
+> copy ssh key
 
 ````bash
 cat ~/.ssh/id_rsa.pub | ssh <user>@<hostname> 'umask 0077; mkdir -p .ssh; cat >> .ssh/authorized_keys && echo "Key copied"'
-
 ````
-### cut history
+> cut history
 
 ```bash
 history 25 > file.log
