@@ -23,61 +23,40 @@ kubectl get services
 ```
 ## create deployment
 ```bash
-kubectl create deployment ngnix-depl --image=nginx
-kubectl create deployment mongo-depl --image=mongo
+kubectl create deployment ngnix-deploy --image=nginx
 kubectl get deployment
 kubectl get pod
 kubectl get replicaset
-kubectl edit deployment ngnix-depl
+kubectl edit deployment ngnix-deploY
 kubectl logs ngnix-deploymnet-9bf5cf8bd
+```
+
+kubectl create deployment mongo-depl --image=mongo
+kubectl get pod
 kubectl logs mongo-depl-5fd6b7d4b4-shn9z
 kubectl describe pod  mongo-depl-5fd6b7d4b4-shn9z
 kubectl logs mongo-depl-5fd6b7d4b4-shn9z
-```
-## interact with pod.
-
-```bash
+clear
+gett pod
+kubectl get pod
 kubectl exec -it mongo-depl-5fd6b7d4b4-shn9z -- bin/bash
 kubectl get deployment
 kubectl get pod
-```
-## delete deployment
-
-```bash
+kubestl delete deployment mongo-depl
 kubectl delete deployment mongo-depl
 kubectl get pod
 kubectl get replicaset
-```
-
-## deploy from deployment file
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-   app: nginx
-spec:
-  replicas: 2 
-  selector: 
-   matchLabels:
-     app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx 
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.16
-        ports:
-        - containerPort: 80
-```
-
-
-```bash
+kubectl apply -f nginx-deployment.yaml
+touch nginx-deployment.yaml
+vi nginx-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
+vi nginx-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
+vi nginx-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
+vi nginx-deployment.yaml
 kubectl apply -f nginx-deployment.yaml
 kubectl get pod
-kubectl get pods -o wide
-```
+kubectl delete deployment ngnix-deploymnet-9bf5cf8bd-4tbk7
+kubectl get replicase
+`kubectl get pods -o wid`
