@@ -19,10 +19,9 @@ eval $(minishift docker-env)
 
 ```
 
-Using oc
+## Using oc
 
-'''bash
+```bash
 oc login -u system:admin
 oc config view
-
-'''
+```
