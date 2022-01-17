@@ -16,7 +16,7 @@ Inital access is the set of tatics, techniques procedures used by malicious acto
 
 - maldocs example https://dissectmalware.wordpress.com/tag/maldoc/
 
-###Empire
+### Empire
 
 Initial Setup
 
@@ -27,7 +27,7 @@ Running ./empire will start Empire, and ./empire –debug will generate a verbos
 - empire powershell https://github.com/EmpireProject/Empire
 
 
-###Covenant
+### Covenant
 
 ```
 $ ~ > git clone --recurse-submodules https://github.com/cobbr/Covenant
@@ -51,7 +51,7 @@ cd Covenant/Covenant
 dotnet build
 dotnet run
 ```
-###Kodaic 
+### Kodaic 
 
 - kodaic hta used by apt28 https://github.com/zerosum0x0/koadic
 
@@ -72,7 +72,7 @@ pip3 install -r requirements.txt
 - info 
 
 
-###Cobalt Strike
+### Cobalt Strike
 
 ```
 Linux
@@ -90,7 +90,7 @@ https://www.cobaltstrike.com/downloads/csmanual43.pdf
 - 
 
 
-###Metasploit 
+### Metasploit 
 
 https://www.darkoperator.com/installing-metasploit-in-ubuntu
 
@@ -118,7 +118,7 @@ exploit
 ```
 
 
-- ct framework metasploit framework 
+### ct framework metasploit framework 
 
 - operation cobalt kitty
 - create listener 
@@ -218,14 +218,6 @@ https://github.com/SigmaHQ/sigma
   - autoruns item
   - applocker
   - Object,auditing -Files Registry
-
-
-
-
-
-
-
-
 
 ### Cloud
 
