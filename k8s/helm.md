@@ -2,10 +2,10 @@
 
 ## Install Helm x64
 
-'''bash
+```bash
 curl -LO ~/.local/helm/helm.tgz https://get.helm.sh/helm-v3.8.0-rc.1-linux-amd64.tar.gz
 tar xf helm-v3.8.0-rc.1-linux-amd64.tar.gz -C /usr/local/bin/helm
-'''
+```
 
 ```bash
 helm create phoenixnap
