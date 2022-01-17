@@ -12,6 +12,12 @@ minikube kubectl -- get pods -A
 minikube status
 ```
 
+## update minikube
+
+```bash
+minikube start --kubernetes-version=latest
+```
+
 ## Enable Dashboard
 
 ```console
@@ -20,3 +26,12 @@ minikube addons enable dashboard
 minikube dashboard
 minikube dashboard --url
 ```
+
+## Install cri.o with minikube
+
+```bash
+ minikube delete --all
+ minikube start --container-runtime=crio
+ kubectl get nodes -o wide
+```
+
