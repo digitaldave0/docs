@@ -23,7 +23,7 @@ cp cdk-3.12.0-1-minishift-linux-amd64 /usr/local/bin
 ln -sf cdk-3.12.0-1-minishift-linux-amd64 minishift
 minishift setup-cdk
 #VirtualBox
-minishift start --vm-driver=virtualbox.
+minishift start --vm-driver=kvm.
 minishift oc-env
 eval $(minishift oc-env)
 ```
