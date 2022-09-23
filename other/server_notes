@@ -1,0 +1,96 @@
+sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo docker run hello-world
+sudo docker images
+sudo docker ps -a
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo apt-get install docker-compose-plugin
+sudo reboot 
+
+
+hassio
+
+docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -e TZ=MY_TIME_ZONE \
+  -v /~/dave/:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
+  
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /~/dave/:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+
+# This file is generated from information provided by
+# the datasource.  Changes to it will not persist across an instance.
+# To disable cloud-init's network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    wlp2s0:
+     dhcp4: no
+     addresses: [192.168.6.31/24]
+     gateway4: 192.168.4.1
+     nameservers:
+       addresses: [8.8.8.8,8.8.4.4]
+       
+sudo netplan --debug apply
+
+#kvm install
+
+sudo apt -y install bridge-utils cpu-checker libvirt-clients libvirt-daemon qemu qemu-kvm
+
+#kvm ok 
+
+sudo kvm-ok
+
+#setup bridge br0 
+
+# This file is generated from information provided by
+# the datasource.  Changes to it will not persist across an instance.
+# To disable cloud-init's network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+   wlp2s0:
+     dhcp4: no
+  bridges:
+    br0:
+      interfaces: [wlp2s0]
+      addresses: [192.168.6.31/24]
+      gateway4: 192.168.4.1 
+      nameservers:
+       addresses: [8.8.8.8,8.8.4.4]
+
+#create vm using virtinst test br0
+
+sudo virt-install --name ubuntu-guest --os-variant ubuntu20.04 --vcpus 2 --ram 2048 --location http://ftp.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/ --network bridge=br0,model=virtio --graphics none --extra-args='console=ttyS0,115200n8 serial'
+
+VBoxManage list vms
+VBoxHeadless -s hassio_test
