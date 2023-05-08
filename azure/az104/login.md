@@ -65,6 +65,18 @@ pwsh
 az account list --output=table
 az account list-locations --output=table | egrep 'United'
 ```
+# create vm from cloudshell
+
+```bash
+az vm create `                                                                          
+>> --resource-group $rg.ResourceGroupName `                                                   
+>> --location $rg.Location ` 
+>> --name dah-demo02 ` 
+>> --image UbuntuLTS ` 
+>> --admin-username dahroot ` 
+>> --generate-ssh-keys ` 
+>> --no-wait 
+```
 
 # using SPN with az cli  
 
