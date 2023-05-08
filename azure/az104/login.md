@@ -74,6 +74,13 @@ az vm update -g "395-c0d18980-add-remove-and-update-tags-for-resou" -n webvm1 --
 
 az vm update -g "395-c0d18980-add-remove-and-update-tags-for-resou" -n webvm1 --set tags.MarkForDeletion=Yes
 
+az network vnet list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json
+
+az resource tag --tags "Dept=IT" "Envionment=Producton" "CreateBy=Me" \ 
+-g "395-c0d18980-add-remove-and-update-tags-for-resou" \ 
+-n "vnet1" \ 
+--resource-type "Microsoft.Network/virtualNetworks"
+
 ```
 
 
