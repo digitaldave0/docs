@@ -64,7 +64,11 @@ pwsh
 # list account subscription
 az account list --output=table
 az account list-locations --output=table | egrep 'United'
+
+az group update -n "395-c0d18980-add-remove-and-update-tags-for-resou" \
+> --tags "Environment=Production" "Dept=IT" "CreatedBy=Me"
 ```
+
 
 # using SPN with az cli  
 
