@@ -67,7 +67,13 @@ az account list-locations --output=table | egrep 'United'
 
 az group update -n "395-c0d18980-add-remove-and-update-tags-for-resou" \
 > --tags "Environment=Production" "Dept=IT" "CreatedBy=Me"
+
 az vm list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json
+
+az vm update -g "395-c0d18980-add-remove-and-update-tags-for-resou" -n webvm1 --remove tags.defaultExperienc
+
+az vm update -g "395-c0d18980-add-remove-and-update-tags-for-resou" -n webvm1 --set tags.MarkForDeletion=Yes
+
 ```
 
 
